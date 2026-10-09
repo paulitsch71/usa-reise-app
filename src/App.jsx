@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 
 const initialItinerary = [
-  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Waikiki Resort Hotel (Oahu)" },
+  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Waikiki Resort Hotel" },
   { id: 2, date: "Fr, 14.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Freizeit in Honolulu (z. B. Waikiki Beach)", evening: "Entspannung nach dem Langstreckenflug", hotel: "Waikiki Resort Hotel" },
   { id: 3, date: "Sa, 15.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Erkundung von Oahu auf eigene Faust", evening: "Freizeit auf der Hauptinsel", hotel: "Waikiki Resort Hotel" },
   { id: 4, date: "So, 16.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Ausflug oder Strandtag auf Oahu", evening: "Abendstimmung in Honolulu genießen", hotel: "Waikiki Resort Hotel" },
@@ -17,16 +17,16 @@ const initialItinerary = [
   { id: 10, date: "Sa, 22.05.2027", region: "Big Island", isHawaii: true, morning: "Erkundung der Vulkaninsel (z. B. Kona Coast / Hawaii Volcanoes NP)", evening: "Abend in Kona", hotel: "Kona Seaside Hotel" },
   { id: 11, date: "So, 23.05.2027", region: "Big Island", isHawaii: true, morning: "Freizeit oder Ausflug auf Big Island", evening: "Entspannter Ausklang", hotel: "Kona Seaside Hotel" },
   { id: 12, date: "Mo, 24.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Letzter Tag auf Big Island / Abreisevorbereitung", evening: "Flug AA 664: KOA 21:55 Uhr ✈️ 06:47 Uhr PHX (Phoenix, Ankunft 25.05.)", hotel: "Nachtflug nach Phoenix" },
-  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Hotel in Phoenix / Scottsdale" },
-  { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix", hotel: "Hotel in Phoenix / Scottsdale" },
-  { id: 15, date: "Do, 27.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Hotel Rancho Cucamonga" },
-  { id: 16, date: "Fr, 28.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Tag in Rancho Cucamonga / Umgebung", evening: "Freizeit", hotel: "Hotel Rancho Cucamonga" },
-  { id: 17, date: "Sa, 29.05.2027", region: "Los Angeles", isHawaii: false, morning: "Weiterfahrt nach Los Angeles", evening: "Check-in & erste Eindrücke in LA", hotel: "Hotel in LA" },
-  { id: 18, date: "So, 30.05.2027", region: "Los Angeles", isHawaii: false, morning: "Sightseeing in LA (z. B. Hollywood, Santa Monica)", evening: "Abendprogramm in LA", hotel: "Hotel in LA" },
-  { id: 19, date: "Mo, 31.05.2027", region: "Los Angeles", isHawaii: false, morning: "Freizeit in Los Angeles", evening: "Letzter Abend der Reise", hotel: "Hotel in LA" },
-  { id: 20, date: "Di, 01.06.2027", region: "Los Angeles", isHawaii: false, morning: "Freizeit & Entspannung in Los Angeles", evening: "Abend in LA", hotel: "Hotel in LA" },
-  { id: 21, date: "Mi, 02.06.2027", region: "Los Angeles", isHawaii: false, morning: "Vorbereitung auf die Heimreise", evening: "Koffer packen & Ausklang", hotel: "Hotel in LA" },
-  { id: 22, date: "Do, 03.06.2027", region: "Flug", isFlight: true, isHawaii: false, morning: "Flug AS 1403: LAX 13:29 Uhr ✈️ 14:55 Uhr SFO", evening: "Flug DE 2097: SFO 16:40 Uhr ✈️ Richtung Frankfurt", hotel: "Rückflug nach FRA" },
+  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Phoenix Airport Hotel" },
+  { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix", hotel: "Phoenix Airport Hotel" },
+  { id: 15, date: "Do, 27.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Rancho Cucamonga Suites" },
+  { id: 16, date: "Fr, 28.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Tag in Rancho Cucamonga / Umgebung", evening: "Freizeit", hotel: "Rancho Cucamonga Suites" },
+  { id: 17, date: "Sa, 29.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Ausflug Richtung LA / Santa Monica", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Rancho Cucamonga Suites" },
+  { id: 18, date: "So, 30.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Sightseeing im LA-Großraum (z. B. Hollywood)", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Rancho Cucamonga Suites" },
+  { id: 19, date: "Mo, 31.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Freizeit / Inland Empire Erkundung", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Rancho Cucamonga Suites" },
+  { id: 20, date: "Di, 01.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Shopping & Entspannung in Rancho Cucamonga", evening: "Ausklang des Tages", hotel: "Rancho Cucamonga Suites" },
+  { id: 21, date: "Mi, 02.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Vorbereitung auf die Heimreise", evening: "Koffer packen in Rancho Cucamonga", hotel: "Rancho Cucamonga Suites" },
+  { id: 22, date: "Do, 03.06.2027", region: "Flug", isFlight: true, isHawaii: false, morning: "Fahrt zum Flughafen LAX / Flug AS 1403: LAX 13:29 Uhr ✈️ 14:55 Uhr SFO", evening: "Flug DE 2097: SFO 16:40 Uhr ✈️ Richtung Frankfurt", hotel: "Rückflug nach FRA" },
   { id: 23, date: "Fr, 04.06.2027", region: "Frankfurt (Ankunft)", isFlight: true, isHawaii: false, morning: "Ankunft am Flughafen Frankfurt (FRA) um 12:45 Uhr", evening: "Heimreise & Urlaubsabschluss", hotel: "Zuhause" }
 ];
 
@@ -41,7 +41,6 @@ const regionCoords = {
   'Phoenix': { lat: 33.4484, lon: -112.0740, waterTemp: null },
   'Rancho Cucamonga (CA)': { lat: 34.1064, lon: -117.5931, waterTemp: null },
   'Rancho Cucamonga': { lat: 34.1064, lon: -117.5931, waterTemp: null },
-  'Los Angeles': { lat: 34.0522, lon: -118.2437, waterTemp: "17°C" },
   'Flug': { lat: 34.0522, lon: -118.2437, waterTemp: null },
   'Frankfurt (Ankunft)': { lat: 50.1109, lon: 8.6821, waterTemp: null }
 };
@@ -57,7 +56,6 @@ const regionVisuals = {
   'Phoenix': { title: "Phoenix & Umgebung", bg: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80" },
   'Rancho Cucamonga (CA)': { title: "Rancho Cucamonga – Sonne in Kalifornien", bg: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=1200&q=80" },
   'Rancho Cucamonga': { title: "Rancho Cucamonga", bg: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=1200&q=80" },
-  'Los Angeles': { title: "Los Angeles – Hollywood & Pacific Coast", bg: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=1200&q=80" },
   'Flug': { title: "Flug & Weiterreise", bg: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80" },
   'Frankfurt (Ankunft)': { title: "Ankunft in Deutschland", bg: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80" }
 };
@@ -132,17 +130,16 @@ const defaultPhoenixFood = [
   "Mexikanische Grills in Old Town Scottsdale"
 ];
 
-const defaultLAShopping = [
-  "Citadel Outlets (Direkt in LA für Extended Sales)",
-  "Santa Monica Third Street Promenade",
-  "Rodeo Drive - Beverly Hills (Window Shopping)",
-  "Ross Dress for Less & Marshalls in LA"
+const defaultRanchoShopping = [
+  "Victoria Gardens (Riesige Outdoor-Mall in Rancho Cucamonga)",
+  "Ontario Mills Outlet (Sehr nah & riesiges Outlet-Zentrum)",
+  "Citadel Outlets (Auf dem Weg nach LA für Extended Sales)"
 ];
 
-const defaultLAFood = [
+const defaultRanchoFood = [
   "In-N-Out Burger (Günstige Burger & Grilled Cheese ~4$)",
-  "Lokale Taquerias (Mexikanische Tacos & Burritos)",
-  "Farmers Market at The Grove (Riesige Essensauswahl)"
+  "Lokale Taquerias & Restaurants in Rancho Cucamonga",
+  "Farmers Market at The Grove (Bei Ausflügen nach LA)"
 ];
 
 export default function App() {
@@ -259,12 +256,19 @@ export default function App() {
       if (!parsed["Phoenix"].shopping || parsed["Phoenix"].shopping.length === 0) parsed["Phoenix"].shopping = defaultPhoenixShopping;
     }
 
-    // Los Angeles defaults
-    if (!parsed["Los Angeles"]) {
-      parsed["Los Angeles"] = { food: defaultLAFood, shopping: defaultLAShopping, misc: [] };
+    // Rancho Cucamonga defaults
+    if (!parsed["Rancho Cucamonga (CA)"]) {
+      parsed["Rancho Cucamonga (CA)"] = { food: defaultRanchoFood, shopping: defaultRanchoShopping, misc: [] };
     } else {
-      if (!parsed["Los Angeles"].food || parsed["Los Angeles"].food.length === 0) parsed["Los Angeles"].food = defaultLAFood;
-      if (!parsed["Los Angeles"].shopping || parsed["Los Angeles"].shopping.length === 0) parsed["Los Angeles"].shopping = defaultLAShopping;
+      if (!parsed["Rancho Cucamonga (CA)"].food || parsed["Rancho Cucamonga (CA)"].food.length === 0) parsed["Rancho Cucamonga (CA)"].food = defaultRanchoFood;
+      if (!parsed["Rancho Cucamonga (CA)"].shopping || parsed["Rancho Cucamonga (CA)"].shopping.length === 0) parsed["Rancho Cucamonga (CA)"].shopping = defaultRanchoShopping;
+    }
+
+    if (!parsed["Rancho Cucamonga"]) {
+      parsed["Rancho Cucamonga"] = { food: defaultRanchoFood, shopping: defaultRanchoShopping, misc: [] };
+    } else {
+      if (!parsed["Rancho Cucamonga"].food || parsed["Rancho Cucamonga"].food.length === 0) parsed["Rancho Cucamonga"].food = defaultRanchoFood;
+      if (!parsed["Rancho Cucamonga"].shopping || parsed["Rancho Cucamonga"].shopping.length === 0) parsed["Rancho Cucamonga"].shopping = defaultRanchoShopping;
     }
 
     return parsed;
@@ -751,7 +755,7 @@ export default function App() {
             </div>
             <div className="bg-slate-950/80 p-5 rounded-2xl border border-white/5">
               <h3 className="text-xs font-semibold text-amber-400 mb-1 uppercase tracking-wider">Stationen</h3>
-              <p className="text-2xl font-black text-slate-100">6 Ziele</p>
+              <p className="text-2xl font-black text-slate-100">5 Hauptstationen</p>
             </div>
             <div className="bg-slate-950/80 p-5 rounded-2xl border border-white/5">
               <h3 className="text-xs font-semibold text-indigo-400 mb-1 uppercase tracking-wider">Flüge</h3>
@@ -779,15 +783,15 @@ export default function App() {
               </li>
               <li className="flex justify-between border-b border-white/5 pb-1">
                 <span className="font-semibold text-orange-300">Phoenix (2 Nächte):</span>
-                <span>Hotel in Phoenix / Scottsdale</span>
+                <span>Phoenix Airport Hotel</span>
               </li>
               <li className="flex justify-between border-b border-white/5 pb-1">
-                <span className="font-semibold text-orange-300">Rancho Cucamonga (2 Nächte):</span>
-                <span>Hotel Rancho Cucamonga</span>
+                <span className="font-semibold text-orange-300">Rancho Cucamonga (7 Nächte):</span>
+                <span>Rancho Cucamonga Suites</span>
               </li>
               <li className="flex justify-between">
-                <span className="font-semibold text-orange-300">Los Angeles (5 Nächte):</span>
-                <span>Hotel in Los Angeles</span>
+                <span className="font-semibold text-orange-300">Los Angeles:</span>
+                <span>Kein Hotel (Tagesausflüge & Rückflug ab LAX)</span>
               </li>
             </ul>
           </div>
