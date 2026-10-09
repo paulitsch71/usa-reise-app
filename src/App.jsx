@@ -5,27 +5,27 @@ import {
 } from 'lucide-react';
 
 const initialItinerary = [
-  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Waikiki Resort Hotel" },
-  { id: 2, date: "Fr, 14.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Freizeit in Honolulu (z. B. Waikiki Beach)", evening: "Entspannung nach dem Langstreckenflug", hotel: "Waikiki Resort Hotel" },
-  { id: 3, date: "Sa, 15.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Erkundung von Oahu auf eigene Faust", evening: "Freizeit auf der Hauptinsel", hotel: "Waikiki Resort Hotel" },
-  { id: 4, date: "So, 16.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Ausflug oder Strandtag auf Oahu", evening: "Abendstimmung in Honolulu genießen", hotel: "Waikiki Resort Hotel" },
+  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Ramada Plaza by Wyndham Waikiki" },
+  { id: 2, date: "Fr, 14.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Freizeit in Honolulu (z. B. Waikiki Beach)", evening: "Entspannung nach dem Langstreckenflug", hotel: "Ramada Plaza by Wyndham Waikiki" },
+  { id: 3, date: "Sa, 15.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Erkundung von Oahu auf eigene Faust", evening: "Freizeit auf der Hauptinsel", hotel: "Ramada Plaza by Wyndham Waikiki" },
+  { id: 4, date: "So, 16.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Ausflug oder Strandtag auf Oahu", evening: "Abendstimmung in Honolulu genießen", hotel: "Ramada Plaza by Wyndham Waikiki" },
   { id: 5, date: "Mo, 17.05.2027", region: "Maui (Kahului)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Honolulu (HNL) nach Kahului (OGG), Maui", evening: "Mietwagenübernahme & Hotel-Check-in auf Maui", hotel: "Maui Seaside Hotel" },
   { id: 6, date: "Di, 18.05.2027", region: "Maui", isHawaii: true, morning: "Erkundung von Maui (z. B. Road to Hana oder Strände)", evening: "Gemütlicher Abend auf Maui", hotel: "Maui Seaside Hotel" },
   { id: 7, date: "Mi, 19.05.2027", region: "Maui", isHawaii: true, morning: "Freizeit auf Maui / Aktivität nach Wahl", evening: "Entspannung im Resort / Ort", hotel: "Maui Seaside Hotel" },
   { id: 8, date: "Do, 20.05.2027", region: "Maui", isHawaii: true, morning: "Weiterer Tag für Highlight-Spots auf Maui", evening: "Sonnenuntergang genießen", hotel: "Maui Seaside Hotel" },
-  { id: 9, date: "Fr, 21.05.2027", region: "Big Island (Kona)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Kahului (OGG) nach Kona (KOA), Big Island", evening: "Ankunft, Mietwagen & Hotel-Check-in in Kona", hotel: "Kona Seaside Hotel" },
-  { id: 10, date: "Sa, 22.05.2027", region: "Big Island", isHawaii: true, morning: "Erkundung der Vulkaninsel (z. B. Kona Coast / Hawaii Volcanoes NP)", evening: "Abend in Kona", hotel: "Kona Seaside Hotel" },
-  { id: 11, date: "So, 23.05.2027", region: "Big Island", isHawaii: true, morning: "Freizeit oder Ausflug auf Big Island", evening: "Entspannter Ausklang", hotel: "Kona Seaside Hotel" },
+  { id: 9, date: "Fr, 21.05.2027", region: "Big Island (Kona)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Kahului (OGG) nach Kona (KOA), Big Island", evening: "Ankunft, Mietwagen & Hotel-Check-in in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona" },
+  { id: 10, date: "Sa, 22.05.2027", region: "Big Island", isHawaii: true, morning: "Erkundung der Vulkaninsel (z. B. Kona Coast / Hawaii Volcanoes NP)", evening: "Abend in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona" },
+  { id: 11, date: "So, 23.05.2027", region: "Big Island", isHawaii: true, morning: "Freizeit oder Ausflug auf Big Island", evening: "Entspannter Ausklang", hotel: "Holiday Inn Express & Suites Kailua-Kona" },
   { id: 12, date: "Mo, 24.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Letzter Tag auf Big Island / Abreisevorbereitung", evening: "Flug AA 664: KOA 21:55 Uhr ✈️ 06:47 Uhr PHX (Phoenix, Ankunft 25.05.)", hotel: "Nachtflug nach Phoenix" },
-  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Phoenix Airport Hotel" },
-  { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix", hotel: "Phoenix Airport Hotel" },
-  { id: 15, date: "Do, 27.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Rancho Cucamonga Suites" },
-  { id: 16, date: "Fr, 28.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Tag in Rancho Cucamonga / Umgebung", evening: "Freizeit", hotel: "Rancho Cucamonga Suites" },
-  { id: 17, date: "Sa, 29.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Ausflug Richtung LA / Santa Monica", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Rancho Cucamonga Suites" },
-  { id: 18, date: "So, 30.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Sightseeing im LA-Großraum (z. B. Hollywood)", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Rancho Cucamonga Suites" },
-  { id: 19, date: "Mo, 31.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Freizeit / Inland Empire Erkundung", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Rancho Cucamonga Suites" },
-  { id: 20, date: "Di, 01.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Shopping & Entspannung in Rancho Cucamonga", evening: "Ausklang des Tages", hotel: "Rancho Cucamonga Suites" },
-  { id: 21, date: "Mi, 02.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Vorbereitung auf die Heimreise", evening: "Koffer packen in Rancho Cucamonga", hotel: "Rancho Cucamonga Suites" },
+  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
+  { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
+  { id: 15, date: "Do, 27.05.2027", region: "Phoenix", isHawaii: false, morning: "Tagesausflug (z. B. Sedona oder Outlets)", evening: "Abendstimmung in Arizona", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
+  { id: 16, date: "Fr, 28.05.2027", region: "Phoenix", isHawaii: false, morning: "Shopping & Sightseeing in Phoenix", evening: "Entspannung am Abend", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
+  { id: 17, date: "Sa, 29.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
+  { id: 18, date: "So, 30.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Sightseeing im LA-Großraum (z. B. Hollywood / Santa Monica)", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
+  { id: 19, date: "Mo, 31.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Freizeit / Shopping in Ontario / Rancho Cucamonga", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
+  { id: 20, date: "Di, 01.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Ausflug in die Umgebung oder Entspannung", evening: "Ausklang des Tages", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
+  { id: 21, date: "Mi, 02.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Letzter Tag in Kalifornien / Koffer packen", evening: "Abend in Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
   { id: 22, date: "Do, 03.06.2027", region: "Flug", isFlight: true, isHawaii: false, morning: "Fahrt zum Flughafen LAX / Flug AS 1403: LAX 13:29 Uhr ✈️ 14:55 Uhr SFO", evening: "Flug DE 2097: SFO 16:40 Uhr ✈️ Richtung Frankfurt", hotel: "Rückflug nach FRA" },
   { id: 23, date: "Fr, 04.06.2027", region: "Frankfurt (Ankunft)", isFlight: true, isHawaii: false, morning: "Ankunft am Flughafen Frankfurt (FRA) um 12:45 Uhr", evening: "Heimreise & Urlaubsabschluss", hotel: "Zuhause" }
 ];
@@ -766,28 +766,28 @@ export default function App() {
           {/* Hotel Übersichtskarte */}
           <div className="bg-slate-950/80 p-5 rounded-2xl border border-amber-500/20 space-y-3">
             <h3 className="text-sm font-bold text-amber-400 flex items-center gap-2">
-              <Hotel className="w-4 h-4" /> Hotel & Unterkünfte Übersicht
+              <Hotel className="w-4 h-4" /> Gebuchte Unterkünfte
             </h3>
             <ul className="space-y-2 text-xs text-slate-300">
               <li className="flex justify-between border-b border-white/5 pb-1">
-                <span className="font-semibold text-teal-300">Oahu (4 Nächte):</span>
-                <span>Waikiki Resort Hotel</span>
+                <span className="font-semibold text-teal-300">13.–17. Mai (Oahu):</span>
+                <span>Ramada Plaza by Wyndham Waikiki</span>
               </li>
               <li className="flex justify-between border-b border-white/5 pb-1">
-                <span className="font-semibold text-teal-300">Maui (4 Nächte):</span>
+                <span className="font-semibold text-teal-300">17.–21. Mai (Maui):</span>
                 <span>Maui Seaside Hotel</span>
               </li>
               <li className="flex justify-between border-b border-white/5 pb-1">
-                <span className="font-semibold text-teal-300">Big Island (3 Nächte):</span>
-                <span>Kona Seaside Hotel</span>
+                <span className="font-semibold text-teal-300">21.–24. Mai (Big Island):</span>
+                <span>Holiday Inn Express & Suites Kailua-Kona</span>
               </li>
               <li className="flex justify-between border-b border-white/5 pb-1">
-                <span className="font-semibold text-orange-300">Phoenix (2 Nächte):</span>
-                <span>Phoenix Airport Hotel</span>
+                <span className="font-semibold text-orange-300">25.–29. Mai (Phoenix):</span>
+                <span>Holiday Inn Express & Suites Phoenix West - Tolleson</span>
               </li>
               <li className="flex justify-between border-b border-white/5 pb-1">
-                <span className="font-semibold text-orange-300">Rancho Cucamonga (7 Nächte):</span>
-                <span>Rancho Cucamonga Suites</span>
+                <span className="font-semibold text-orange-300">29. Mai – 03. Jun (Rancho Cucamonga):</span>
+                <span>Best Western Plus Heritage Inn Ontario Rancho Cucamonga</span>
               </li>
               <li className="flex justify-between">
                 <span className="font-semibold text-orange-300">Los Angeles:</span>
