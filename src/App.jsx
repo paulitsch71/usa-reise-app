@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Calendar, MapPin, Plane, Utensils, ShoppingBag, 
-  FileText, Plus, Trash2, ChevronDown, ChevronUp, Bookmark, Clock, Compass, Sun, Palmtree, CloudSun, Waves
+  FileText, Plus, Trash2, ChevronDown, ChevronUp, Bookmark, Clock, Compass, Sun, Palmtree, CloudSun, Waves, Hotel
 } from 'lucide-react';
 
 const initialItinerary = [
-  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)" },
-  { id: 2, date: "Fr, 14.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Freizeit in Honolulu (z. B. Waikiki Beach)", evening: "Entspannung nach dem Langstreckenflug" },
-  { id: 3, date: "Sa, 15.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Erkundung von Oahu auf eigene Faust", evening: "Freizeit auf der Hauptinsel" },
-  { id: 4, date: "So, 16.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Ausflug oder Strandtag auf Oahu", evening: "Abendstimmung in Honolulu genießen" },
-  { id: 5, date: "Mo, 17.05.2027", region: "Maui (Kahului)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Honolulu (HNL) nach Kahului (OGG), Maui", evening: "Mietwagenübernahme & Hotel-Check-in auf Maui" },
-  { id: 6, date: "Di, 18.05.2027", region: "Maui", isHawaii: true, morning: "Erkundung von Maui (z. B. Road to Hana oder Strände)", evening: "Gemütlicher Abend auf Maui" },
-  { id: 7, date: "Mi, 19.05.2027", region: "Maui", isHawaii: true, morning: "Freizeit auf Maui / Aktivität nach Wahl", evening: "Entspannung im Resort / Ort" },
-  { id: 8, date: "Do, 20.05.2027", region: "Maui", isHawaii: true, morning: "Weiterer Tag für Highlight-Spots auf Maui", evening: "Sonnenuntergang genießen" },
-  { id: 9, date: "Fr, 21.05.2027", region: "Big Island (Kona)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Kahului (OGG) nach Kona (KOA), Big Island", evening: "Ankunft, Mietwagen & Hotel-Check-in in Kona" },
-  { id: 10, date: "Sa, 22.05.2027", region: "Big Island", isHawaii: true, morning: "Erkundung der Vulkaninsel (z. B. Kona Coast / Hawaii Volcanoes NP)", evening: "Abend in Kona" },
-  { id: 11, date: "So, 23.05.2027", region: "Big Island", isHawaii: true, morning: "Freizeit oder Ausflug auf Big Island", evening: "Entspannter Ausklang" },
-  { id: 12, date: "Mo, 24.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Letzter Tag auf Big Island / Abreisevorbereitung", evening: "Flug AA 664: KOA 21:55 Uhr ✈️ 06:47 Uhr PHX (Phoenix, Ankunft 25.05.)" },
-  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung" },
-  { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix" },
-  { id: 15, date: "Do, 27.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung" },
-  { id: 16, date: "Fr, 28.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Tag in Rancho Cucamonga / Umgebung", evening: "Freizeit" },
-  { id: 17, date: "Sa, 29.05.2027", region: "Los Angeles", isHawaii: false, morning: "Weiterfahrt nach Los Angeles", evening: "Check-in & erste Eindrücke in LA" },
-  { id: 18, date: "So, 30.05.2027", region: "Los Angeles", isHawaii: false, morning: "Sightseeing in LA (z. B. Hollywood, Santa Monica)", evening: "Abendprogramm in LA" },
-  { id: 19, date: "Mo, 31.05.2027", region: "Los Angeles", isHawaii: false, morning: "Freizeit in Los Angeles", evening: "Letzter Abend der Reise" },
-  { id: 20, date: "Di, 01.06.2027", region: "Los Angeles", isHawaii: false, morning: "Freizeit & Entspannung in Los Angeles", evening: "Abend in LA" },
-  { id: 21, date: "Mi, 02.06.2027", region: "Los Angeles", isHawaii: false, morning: "Vorbereitung auf die Heimreise", evening: "Koffer packen & Ausklang" },
-  { id: 22, date: "Do, 03.06.2027", region: "Flug", isFlight: true, isHawaii: false, morning: "Flug AS 1403: LAX 13:29 Uhr ✈️ 14:55 Uhr SFO", evening: "Flug DE 2097: SFO 16:40 Uhr ✈️ Richtung Frankfurt" },
-  { id: 23, date: "Fr, 04.06.2027", region: "Frankfurt (Ankunft)", isFlight: true, isHawaii: false, morning: "Ankunft am Flughafen Frankfurt (FRA) um 12:45 Uhr", evening: "Heimreise & Urlaubsabschluss" }
+  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Waikiki Resort Hotel (Oahu)" },
+  { id: 2, date: "Fr, 14.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Freizeit in Honolulu (z. B. Waikiki Beach)", evening: "Entspannung nach dem Langstreckenflug", hotel: "Waikiki Resort Hotel" },
+  { id: 3, date: "Sa, 15.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Erkundung von Oahu auf eigene Faust", evening: "Freizeit auf der Hauptinsel", hotel: "Waikiki Resort Hotel" },
+  { id: 4, date: "So, 16.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Ausflug oder Strandtag auf Oahu", evening: "Abendstimmung in Honolulu genießen", hotel: "Waikiki Resort Hotel" },
+  { id: 5, date: "Mo, 17.05.2027", region: "Maui (Kahului)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Honolulu (HNL) nach Kahului (OGG), Maui", evening: "Mietwagenübernahme & Hotel-Check-in auf Maui", hotel: "Maui Seaside Hotel" },
+  { id: 6, date: "Di, 18.05.2027", region: "Maui", isHawaii: true, morning: "Erkundung von Maui (z. B. Road to Hana oder Strände)", evening: "Gemütlicher Abend auf Maui", hotel: "Maui Seaside Hotel" },
+  { id: 7, date: "Mi, 19.05.2027", region: "Maui", isHawaii: true, morning: "Freizeit auf Maui / Aktivität nach Wahl", evening: "Entspannung im Resort / Ort", hotel: "Maui Seaside Hotel" },
+  { id: 8, date: "Do, 20.05.2027", region: "Maui", isHawaii: true, morning: "Weiterer Tag für Highlight-Spots auf Maui", evening: "Sonnenuntergang genießen", hotel: "Maui Seaside Hotel" },
+  { id: 9, date: "Fr, 21.05.2027", region: "Big Island (Kona)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Kahului (OGG) nach Kona (KOA), Big Island", evening: "Ankunft, Mietwagen & Hotel-Check-in in Kona", hotel: "Kona Seaside Hotel" },
+  { id: 10, date: "Sa, 22.05.2027", region: "Big Island", isHawaii: true, morning: "Erkundung der Vulkaninsel (z. B. Kona Coast / Hawaii Volcanoes NP)", evening: "Abend in Kona", hotel: "Kona Seaside Hotel" },
+  { id: 11, date: "So, 23.05.2027", region: "Big Island", isHawaii: true, morning: "Freizeit oder Ausflug auf Big Island", evening: "Entspannter Ausklang", hotel: "Kona Seaside Hotel" },
+  { id: 12, date: "Mo, 24.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Letzter Tag auf Big Island / Abreisevorbereitung", evening: "Flug AA 664: KOA 21:55 Uhr ✈️ 06:47 Uhr PHX (Phoenix, Ankunft 25.05.)", hotel: "Nachtflug nach Phoenix" },
+  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Hotel in Phoenix / Scottsdale" },
+  { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix", hotel: "Hotel in Phoenix / Scottsdale" },
+  { id: 15, date: "Do, 27.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Hotel Rancho Cucamonga" },
+  { id: 16, date: "Fr, 28.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Tag in Rancho Cucamonga / Umgebung", evening: "Freizeit", hotel: "Hotel Rancho Cucamonga" },
+  { id: 17, date: "Sa, 29.05.2027", region: "Los Angeles", isHawaii: false, morning: "Weiterfahrt nach Los Angeles", evening: "Check-in & erste Eindrücke in LA", hotel: "Hotel in LA" },
+  { id: 18, date: "So, 30.05.2027", region: "Los Angeles", isHawaii: false, morning: "Sightseeing in LA (z. B. Hollywood, Santa Monica)", evening: "Abendprogramm in LA", hotel: "Hotel in LA" },
+  { id: 19, date: "Mo, 31.05.2027", region: "Los Angeles", isHawaii: false, morning: "Freizeit in Los Angeles", evening: "Letzter Abend der Reise", hotel: "Hotel in LA" },
+  { id: 20, date: "Di, 01.06.2027", region: "Los Angeles", isHawaii: false, morning: "Freizeit & Entspannung in Los Angeles", evening: "Abend in LA", hotel: "Hotel in LA" },
+  { id: 21, date: "Mi, 02.06.2027", region: "Los Angeles", isHawaii: false, morning: "Vorbereitung auf die Heimreise", evening: "Koffer packen & Ausklang", hotel: "Hotel in LA" },
+  { id: 22, date: "Do, 03.06.2027", region: "Flug", isFlight: true, isHawaii: false, morning: "Flug AS 1403: LAX 13:29 Uhr ✈️ 14:55 Uhr SFO", evening: "Flug DE 2097: SFO 16:40 Uhr ✈️ Richtung Frankfurt", hotel: "Rückflug nach FRA" },
+  { id: 23, date: "Fr, 04.06.2027", region: "Frankfurt (Ankunft)", isFlight: true, isHawaii: false, morning: "Ankunft am Flughafen Frankfurt (FRA) um 12:45 Uhr", evening: "Heimreise & Urlaubsabschluss", hotel: "Zuhause" }
 ];
 
 const regionCoords = {
@@ -199,7 +199,7 @@ export default function App() {
     return saved ? JSON.parse(saved) : {};
   });
 
-  // LocalStorage state for destination/region notes with full default fallback
+  // LocalStorage state for destination/region notes
   const [regionReminders, setRegionReminders] = useState(() => {
     const saved = localStorage.getItem('usa2027_region_reminders');
     const parsed = saved ? JSON.parse(saved) : {};
@@ -445,7 +445,7 @@ export default function App() {
 
       {activeTab === 'plan' && (
         <main className="max-w-4xl mx-auto space-y-5">
-          {/* Region Filter Bar (Glassmorphism) */}
+          {/* Region Filter Bar */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none bg-slate-900/40 p-2 rounded-2xl border border-white/5 backdrop-blur-md">
             <Compass className="w-4 h-4 text-blue-400 ml-2 flex-shrink-0" />
             {regions.map(r => {
@@ -470,7 +470,7 @@ export default function App() {
             })}
           </div>
 
-          {/* Region Overview Card (Glassmorphism) */}
+          {/* Region Overview Card */}
           <div className={`rounded-2xl border shadow-xl overflow-hidden backdrop-blur-xl transition-all ${
             isSelectedHawaii 
               ? 'bg-gradient-to-b from-teal-950/40 to-slate-900/60 border-teal-500/30' 
@@ -628,6 +628,14 @@ export default function App() {
                       </div>
                     </div>
 
+                    {/* Hotel Badge pro Tag */}
+                    {item.hotel && (
+                      <div className="mb-3 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center gap-2 text-xs text-amber-300 font-medium">
+                        <Hotel className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                        <span><strong>Unterkunft:</strong> {item.hotel}</span>
+                      </div>
+                    )}
+
                     <button 
                       onClick={() => toggleExpand(item.id)}
                       className="w-full flex items-center justify-between text-xs font-semibold text-slate-400 hover:text-slate-200 bg-slate-950/40 p-3 rounded-xl border border-white/5 transition-all"
@@ -733,8 +741,9 @@ export default function App() {
       )}
 
       {activeTab === 'overview' && (
-        <main className="max-w-4xl mx-auto bg-slate-900/60 p-6 rounded-2xl border border-white/10 shadow-xl backdrop-blur-xl">
-          <h2 className="text-xl font-bold mb-4 text-blue-400">Reiseübersicht & Key-Facts</h2>
+        <main className="max-w-4xl mx-auto bg-slate-900/60 p-6 rounded-2xl border border-white/10 shadow-xl backdrop-blur-xl space-y-6">
+          <h2 className="text-xl font-bold text-blue-400">Reiseübersicht & Key-Facts</h2>
+          
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-slate-950/80 p-5 rounded-2xl border border-white/5">
               <h3 className="text-xs font-semibold text-emerald-400 mb-1 uppercase tracking-wider">Gesamtdauer</h3>
@@ -748,6 +757,39 @@ export default function App() {
               <h3 className="text-xs font-semibold text-indigo-400 mb-1 uppercase tracking-wider">Flüge</h3>
               <p className="text-2xl font-black text-slate-100">6 Flugsegmente</p>
             </div>
+          </div>
+
+          {/* Hotel Übersichtskarte */}
+          <div className="bg-slate-950/80 p-5 rounded-2xl border border-amber-500/20 space-y-3">
+            <h3 className="text-sm font-bold text-amber-400 flex items-center gap-2">
+              <Hotel className="w-4 h-4" /> Hotel & Unterkünfte Übersicht
+            </h3>
+            <ul className="space-y-2 text-xs text-slate-300">
+              <li className="flex justify-between border-b border-white/5 pb-1">
+                <span className="font-semibold text-teal-300">Oahu (4 Nächte):</span>
+                <span>Waikiki Resort Hotel</span>
+              </li>
+              <li className="flex justify-between border-b border-white/5 pb-1">
+                <span className="font-semibold text-teal-300">Maui (4 Nächte):</span>
+                <span>Maui Seaside Hotel</span>
+              </li>
+              <li className="flex justify-between border-b border-white/5 pb-1">
+                <span className="font-semibold text-teal-300">Big Island (3 Nächte):</span>
+                <span>Kona Seaside Hotel</span>
+              </li>
+              <li className="flex justify-between border-b border-white/5 pb-1">
+                <span className="font-semibold text-orange-300">Phoenix (2 Nächte):</span>
+                <span>Hotel in Phoenix / Scottsdale</span>
+              </li>
+              <li className="flex justify-between border-b border-white/5 pb-1">
+                <span className="font-semibold text-orange-300">Rancho Cucamonga (2 Nächte):</span>
+                <span>Hotel Rancho Cucamonga</span>
+              </li>
+              <li className="flex justify-between">
+                <span className="font-semibold text-orange-300">Los Angeles (5 Nächte):</span>
+                <span>Hotel in Los Angeles</span>
+              </li>
+            </ul>
           </div>
         </main>
       )}
