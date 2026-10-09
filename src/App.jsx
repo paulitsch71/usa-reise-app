@@ -68,11 +68,23 @@ const defaultOahuFood = [
   "Jack in the Box (24 Std. geöffnet / Drive-Thru)",
   "Kahuku Food Trucks - North Shore (Täglich ca. 10:00 – 18:00 Uhr)",
   "Sabrozon Mexican Food Truck (Täglich 11:15 – 19:45 Uhr)",
-  "Domino’s Pizza (Täglich 10:00 – 00:00/01:00 Uhr)",
-  "Taco Bell (Täglich 07:00 – 01:00 Uhr)",
-  "Jersey Mike’s Subs (Täglich 10:00 – 21:00 Uhr)",
-  "Popeyes Louisiana Kitchen (Täglich 10:00 – 22:00 Uhr)",
-  "Chick-fil-A (Mo–Sa 06:30 – 22:00 Uhr | So geschl.)"
+  "Giovanni's Shrimp Truck (North Shore - Knoblauch-Garnelen ~16$)",
+  "Rainbow Drive-In (Loco Moco & BBQ Chicken ~11-13$)",
+  "Highway Inn - Kaka'ako (Kalua Pig Teller ~15$)",
+  "Leonard's Bakery (Malasadas Donuts ~2$)",
+  "Matsumoto Shave Ice - Haleiwa (~4$)"
+];
+
+const defaultOahuShopping = [
+  "Ala Moana Center (Riesiges Freiluft-Einkaufszentrum)",
+  "Waikele Premium Outlets (Outlet-Shopping vor den Toren Honolulus)",
+  "ABC Stores (An jeder Ecke für Snacks, Souvenirs & Musubi)"
+];
+
+const defaultMauiFood = [
+  "Paia Fish Market (Günstige Burger & frischer Fisch ~14-18$)",
+  "Foodland Supermarkt (Frische Pokē-Bowls an der Frischetheke)",
+  "Leoda's Kitchen and Pie Shop (Süße & herzhafte Pies)"
 ];
 
 const defaultMauiShopping = [
@@ -89,7 +101,15 @@ const defaultMauiShopping = [
 
 const defaultMauiMisc = [
   "Road to Hāna (hin & zurück ~115 Mi. / 4,5 Std. Reine Fahrzeit + Stopps -> 1 ganzen Tag einplanen!)",
-  "Hāna Lava Tube (Ka'eleku Caverns - Vulkanhöhle bei Hāna)"
+  "Hāna Lava Tube (Ka'eleku Caverns - Vulkanhöhle bei Hāna)",
+  "Waiʻānapanapa State Park (Schwarzer Strand - Slot 30 Tage vorher buchen!)",
+  "Haleakalā Vulkan Gipfel (Sonnenuntergang - Warme Jacken mitnehmen!)"
+];
+
+const defaultBigIslandFood = [
+  "Kona Brewing Co. (Leckere Pizza & lokales Craft Beer)",
+  "Da Poke Shack (Kona - Beste Pokē-Bowls der Insel)",
+  "Tex Drive In (Honokaa - Bekannt für heiße Malasadas)"
 ];
 
 const defaultBigIslandShopping = [
@@ -97,6 +117,32 @@ const defaultBigIslandShopping = [
   "Safeway - Kona/Hilo (24 Std. geöffnet)",
   "Foodland (Täglich 06:00 – 21:00 Uhr)",
   "Island Naturals Market & Deli (Täglich 08:00 – 19:00 Uhr)"
+];
+
+const defaultPhoenixShopping = [
+  "Arizona Mills Mall (Tempe - Riesige klimatisierte Mall)",
+  "Phoenix Premium Outlets (Chandler - Memorial Day Sales!)",
+  "Outlets at Anthem (Nördlich von Phoenix)",
+  "Old Town Scottsdale (Boutiquen & Souvenirs im Wildwest-Stil)"
+];
+
+const defaultPhoenixFood = [
+  "Chipotle Mexican Grill (Große Burritos & Bowls)",
+  "In-N-Out Burger (Klassische Wüsten-Filiale)",
+  "Mexikanische Grills in Old Town Scottsdale"
+];
+
+const defaultLAShopping = [
+  "Citadel Outlets (Direkt in LA für Extended Sales)",
+  "Santa Monica Third Street Promenade",
+  "Rodeo Drive - Beverly Hills (Window Shopping)",
+  "Ross Dress for Less & Marshalls in LA"
+];
+
+const defaultLAFood = [
+  "In-N-Out Burger (Günstige Burger & Grilled Cheese ~4$)",
+  "Lokale Taquerias (Mexikanische Tacos & Burritos)",
+  "Farmers Market at The Grove (Riesige Essensauswahl)"
 ];
 
 export default function App() {
@@ -153,44 +199,72 @@ export default function App() {
     return saved ? JSON.parse(saved) : {};
   });
 
-  // LocalStorage state for destination/region notes
+  // LocalStorage state for destination/region notes with full default fallback
   const [regionReminders, setRegionReminders] = useState(() => {
     const saved = localStorage.getItem('usa2027_region_reminders');
     const parsed = saved ? JSON.parse(saved) : {};
 
     // Oahu defaults
     if (!parsed["Oahu (Honolulu)"]) {
-      parsed["Oahu (Honolulu)"] = { food: defaultOahuFood, shopping: [], misc: [] };
+      parsed["Oahu (Honolulu)"] = { food: defaultOahuFood, shopping: defaultOahuShopping, misc: [] };
     } else {
-      parsed["Oahu (Honolulu)"].food = defaultOahuFood;
+      if (!parsed["Oahu (Honolulu)"].food || parsed["Oahu (Honolulu)"].food.length === 0) parsed["Oahu (Honolulu)"].food = defaultOahuFood;
+      if (!parsed["Oahu (Honolulu)"].shopping || parsed["Oahu (Honolulu)"].shopping.length === 0) parsed["Oahu (Honolulu)"].shopping = defaultOahuShopping;
     }
 
     // Maui defaults
     if (!parsed["Maui"]) {
-      parsed["Maui"] = { food: [], shopping: defaultMauiShopping, misc: defaultMauiMisc };
+      parsed["Maui"] = { food: defaultMauiFood, shopping: defaultMauiShopping, misc: defaultMauiMisc };
     } else {
-      parsed["Maui"].shopping = defaultMauiShopping;
-      parsed["Maui"].misc = defaultMauiMisc;
+      if (!parsed["Maui"].food || parsed["Maui"].food.length === 0) parsed["Maui"].food = defaultMauiFood;
+      if (!parsed["Maui"].shopping || parsed["Maui"].shopping.length === 0) parsed["Maui"].shopping = defaultMauiShopping;
+      if (!parsed["Maui"].misc || parsed["Maui"].misc.length === 0) parsed["Maui"].misc = defaultMauiMisc;
     }
 
     if (!parsed["Maui (Kahului)"]) {
-      parsed["Maui (Kahului)"] = { food: [], shopping: defaultMauiShopping, misc: defaultMauiMisc };
+      parsed["Maui (Kahului)"] = { food: defaultMauiFood, shopping: defaultMauiShopping, misc: defaultMauiMisc };
     } else {
-      parsed["Maui (Kahului)"].shopping = defaultMauiShopping;
-      parsed["Maui (Kahului)"].misc = defaultMauiMisc;
+      if (!parsed["Maui (Kahului)"].food || parsed["Maui (Kahului)"].food.length === 0) parsed["Maui (Kahului)"].food = defaultMauiFood;
+      if (!parsed["Maui (Kahului)"].shopping || parsed["Maui (Kahului)"].shopping.length === 0) parsed["Maui (Kahului)"].shopping = defaultMauiShopping;
+      if (!parsed["Maui (Kahului)"].misc || parsed["Maui (Kahului)"].misc.length === 0) parsed["Maui (Kahului)"].misc = defaultMauiMisc;
     }
 
     // Big Island defaults
     if (!parsed["Big Island"]) {
-      parsed["Big Island"] = { food: [], shopping: defaultBigIslandShopping, misc: [] };
+      parsed["Big Island"] = { food: defaultBigIslandFood, shopping: defaultBigIslandShopping, misc: [] };
     } else {
-      parsed["Big Island"].shopping = defaultBigIslandShopping;
+      if (!parsed["Big Island"].food || parsed["Big Island"].food.length === 0) parsed["Big Island"].food = defaultBigIslandFood;
+      if (!parsed["Big Island"].shopping || parsed["Big Island"].shopping.length === 0) parsed["Big Island"].shopping = defaultBigIslandShopping;
     }
 
     if (!parsed["Big Island (Kona)"]) {
-      parsed["Big Island (Kona)"] = { food: [], shopping: defaultBigIslandShopping, misc: [] };
+      parsed["Big Island (Kona)"] = { food: defaultBigIslandFood, shopping: defaultBigIslandShopping, misc: [] };
     } else {
-      parsed["Big Island (Kona)"].shopping = defaultBigIslandShopping;
+      if (!parsed["Big Island (Kona)"].food || parsed["Big Island (Kona)"].food.length === 0) parsed["Big Island (Kona)"].food = defaultBigIslandFood;
+      if (!parsed["Big Island (Kona)"].shopping || parsed["Big Island (Kona)"].shopping.length === 0) parsed["Big Island (Kona)"].shopping = defaultBigIslandShopping;
+    }
+
+    // Phoenix defaults
+    if (!parsed["Phoenix (Arizona)"]) {
+      parsed["Phoenix (Arizona)"] = { food: defaultPhoenixFood, shopping: defaultPhoenixShopping, misc: [] };
+    } else {
+      if (!parsed["Phoenix (Arizona)"].food || parsed["Phoenix (Arizona)"].food.length === 0) parsed["Phoenix (Arizona)"].food = defaultPhoenixFood;
+      if (!parsed["Phoenix (Arizona)"].shopping || parsed["Phoenix (Arizona)"].shopping.length === 0) parsed["Phoenix (Arizona)"].shopping = defaultPhoenixShopping;
+    }
+
+    if (!parsed["Phoenix"]) {
+      parsed["Phoenix"] = { food: defaultPhoenixFood, shopping: defaultPhoenixShopping, misc: [] };
+    } else {
+      if (!parsed["Phoenix"].food || parsed["Phoenix"].food.length === 0) parsed["Phoenix"].food = defaultPhoenixFood;
+      if (!parsed["Phoenix"].shopping || parsed["Phoenix"].shopping.length === 0) parsed["Phoenix"].shopping = defaultPhoenixShopping;
+    }
+
+    // Los Angeles defaults
+    if (!parsed["Los Angeles"]) {
+      parsed["Los Angeles"] = { food: defaultLAFood, shopping: defaultLAShopping, misc: [] };
+    } else {
+      if (!parsed["Los Angeles"].food || parsed["Los Angeles"].food.length === 0) parsed["Los Angeles"].food = defaultLAFood;
+      if (!parsed["Los Angeles"].shopping || parsed["Los Angeles"].shopping.length === 0) parsed["Los Angeles"].shopping = defaultLAShopping;
     }
 
     return parsed;
