@@ -5,28 +5,28 @@ import {
 } from 'lucide-react';
 
 const initialItinerary = [
-  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Ramada Plaza by Wyndham Waikiki" },
+  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Ramada Plaza by Wyndham Waikiki", checkIn: "ab 15:00 Uhr" },
   { id: 2, date: "Fr, 14.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Freizeit in Honolulu (z. B. Waikiki Beach)", evening: "Entspannung nach dem Langstreckenflug", hotel: "Ramada Plaza by Wyndham Waikiki" },
   { id: 3, date: "Sa, 15.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Erkundung von Oahu auf eigene Faust", evening: "Freizeit auf der Hauptinsel", hotel: "Ramada Plaza by Wyndham Waikiki" },
   { id: 4, date: "So, 16.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Ausflug oder Strandtag auf Oahu", evening: "Abendstimmung in Honolulu genießen", hotel: "Ramada Plaza by Wyndham Waikiki" },
-  { id: 5, date: "Mo, 17.05.2027", region: "Maui (Kahului)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Honolulu (HNL) nach Kahului (OGG), Maui", evening: "Mietwagenübernahme & Hotel-Check-in auf Maui", hotel: "Maui Seaside Hotel" },
+  { id: 5, date: "Mo, 17.05.2027", region: "Maui (Kahului)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Honolulu (HNL) nach Kahului (OGG), Maui", evening: "Mietwagenübernahme & Hotel-Check-in auf Maui", hotel: "Maui Seaside Hotel", checkOutPrev: "Ramada Plaza (bis 11:00 Uhr)", checkIn: "ab 16:00 Uhr" },
   { id: 6, date: "Di, 18.05.2027", region: "Maui", isHawaii: true, morning: "Erkundung von Maui (z. B. Road to Hana oder Strände)", evening: "Gemütlicher Abend auf Maui", hotel: "Maui Seaside Hotel" },
   { id: 7, date: "Mi, 19.05.2027", region: "Maui", isHawaii: true, morning: "Freizeit auf Maui / Aktivität nach Wahl", evening: "Entspannung im Resort / Ort", hotel: "Maui Seaside Hotel" },
   { id: 8, date: "Do, 20.05.2027", region: "Maui", isHawaii: true, morning: "Weiterer Tag für Highlight-Spots auf Maui", evening: "Sonnenuntergang genießen", hotel: "Maui Seaside Hotel" },
-  { id: 9, date: "Fr, 21.05.2027", region: "Big Island (Kona)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Kahului (OGG) nach Kona (KOA), Big Island", evening: "Ankunft, Mietwagen & Hotel-Check-in in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona" },
+  { id: 9, date: "Fr, 21.05.2027", region: "Big Island (Kona)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Kahului (OGG) nach Kona (KOA), Big Island", evening: "Ankunft, Mietwagen & Hotel-Check-in in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona", checkOutPrev: "Maui Seaside (bis 11:00 Uhr)", checkIn: "ab 15:00 Uhr" },
   { id: 10, date: "Sa, 22.05.2027", region: "Big Island", isHawaii: true, morning: "Erkundung der Vulkaninsel (z. B. Kona Coast / Hawaii Volcanoes NP)", evening: "Abend in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona" },
   { id: 11, date: "So, 23.05.2027", region: "Big Island", isHawaii: true, morning: "Freizeit oder Ausflug auf Big Island", evening: "Entspannter Ausklang", hotel: "Holiday Inn Express & Suites Kailua-Kona" },
-  { id: 12, date: "Mo, 24.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Letzter Tag auf Big Island / Abreisevorbereitung", evening: "Flug AA 664: KOA 21:55 Uhr ✈️ 06:47 Uhr PHX (Phoenix, Ankunft 25.05.)", hotel: "Nachtflug nach Phoenix" },
-  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
+  { id: 12, date: "Mo, 24.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Letzter Tag auf Big Island / Abreisevorbereitung", evening: "Flug AA 664: KOA 21:55 Uhr ✈️ 06:47 Uhr PHX (Phoenix, Ankunft 25.05.)", hotel: "Nachtflug nach Phoenix", checkOut: "Holiday Inn Kona (bis 11:00 Uhr)" },
+  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson", checkIn: "ab 15:00 Uhr" },
   { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
   { id: 15, date: "Do, 27.05.2027", region: "Phoenix", isHawaii: false, morning: "Tagesausflug (z. B. Sedona oder Outlets)", evening: "Abendstimmung in Arizona", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
   { id: 16, date: "Fr, 28.05.2027", region: "Phoenix", isHawaii: false, morning: "Shopping & Sightseeing in Phoenix", evening: "Entspannung am Abend", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
-  { id: 17, date: "Sa, 29.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
+  { id: 17, date: "Sa, 29.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga", checkOutPrev: "Holiday Inn Phoenix (bis 11:00 Uhr)", checkIn: "ab 15:00 Uhr" },
   { id: 18, date: "So, 30.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Sightseeing im LA-Großraum (z. B. Hollywood / Santa Monica)", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
   { id: 19, date: "Mo, 31.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Freizeit / Shopping in Ontario / Rancho Cucamonga", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
   { id: 20, date: "Di, 01.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Ausflug in die Umgebung oder Entspannung", evening: "Ausklang des Tages", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
   { id: 21, date: "Mi, 02.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Letzter Tag in Kalifornien / Koffer packen", evening: "Abend in Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
-  { id: 22, date: "Do, 03.06.2027", region: "Flug", isFlight: true, isHawaii: false, morning: "Fahrt zum Flughafen LAX / Flug AS 1403: LAX 13:29 Uhr ✈️ 14:55 Uhr SFO", evening: "Flug DE 2097: SFO 16:40 Uhr ✈️ Richtung Frankfurt", hotel: "Rückflug nach FRA" },
+  { id: 22, date: "Do, 03.06.2027", region: "Flug", isFlight: true, isHawaii: false, morning: "Fahrt zum Flughafen LAX / Flug AS 1403: LAX 13:29 Uhr ✈️ 14:55 Uhr SFO", evening: "Flug DE 2097: SFO 16:40 Uhr ✈️ Richtung Frankfurt", hotel: "Rückflug nach FRA", checkOutPrev: "Best Western Rancho (bis 12:00 Uhr)" },
   { id: 23, date: "Fr, 04.06.2027", region: "Frankfurt (Ankunft)", isFlight: true, isHawaii: false, morning: "Ankunft am Flughafen Frankfurt (FRA) um 12:45 Uhr", evening: "Heimreise & Urlaubsabschluss", hotel: "Zuhause" }
 ];
 
@@ -201,74 +201,32 @@ export default function App() {
     const saved = localStorage.getItem('usa2027_region_reminders');
     const parsed = saved ? JSON.parse(saved) : {};
 
-    // Oahu defaults
     if (!parsed["Oahu (Honolulu)"]) {
       parsed["Oahu (Honolulu)"] = { food: defaultOahuFood, shopping: defaultOahuShopping, misc: [] };
-    } else {
-      if (!parsed["Oahu (Honolulu)"].food || parsed["Oahu (Honolulu)"].food.length === 0) parsed["Oahu (Honolulu)"].food = defaultOahuFood;
-      if (!parsed["Oahu (Honolulu)"].shopping || parsed["Oahu (Honolulu)"].shopping.length === 0) parsed["Oahu (Honolulu)"].shopping = defaultOahuShopping;
     }
-
-    // Maui defaults
     if (!parsed["Maui"]) {
       parsed["Maui"] = { food: defaultMauiFood, shopping: defaultMauiShopping, misc: defaultMauiMisc };
-    } else {
-      if (!parsed["Maui"].food || parsed["Maui"].food.length === 0) parsed["Maui"].food = defaultMauiFood;
-      if (!parsed["Maui"].shopping || parsed["Maui"].shopping.length === 0) parsed["Maui"].shopping = defaultMauiShopping;
-      if (!parsed["Maui"].misc || parsed["Maui"].misc.length === 0) parsed["Maui"].misc = defaultMauiMisc;
     }
-
     if (!parsed["Maui (Kahului)"]) {
       parsed["Maui (Kahului)"] = { food: defaultMauiFood, shopping: defaultMauiShopping, misc: defaultMauiMisc };
-    } else {
-      if (!parsed["Maui (Kahului)"].food || parsed["Maui (Kahului)"].food.length === 0) parsed["Maui (Kahului)"].food = defaultMauiFood;
-      if (!parsed["Maui (Kahului)"].shopping || parsed["Maui (Kahului)"].shopping.length === 0) parsed["Maui (Kahului)"].shopping = defaultMauiShopping;
-      if (!parsed["Maui (Kahului)"].misc || parsed["Maui (Kahului)"].misc.length === 0) parsed["Maui (Kahului)"].misc = defaultMauiMisc;
     }
-
-    // Big Island defaults
     if (!parsed["Big Island"]) {
       parsed["Big Island"] = { food: defaultBigIslandFood, shopping: defaultBigIslandShopping, misc: [] };
-    } else {
-      if (!parsed["Big Island"].food || parsed["Big Island"].food.length === 0) parsed["Big Island"].food = defaultBigIslandFood;
-      if (!parsed["Big Island"].shopping || parsed["Big Island"].shopping.length === 0) parsed["Big Island"].shopping = defaultBigIslandShopping;
     }
-
     if (!parsed["Big Island (Kona)"]) {
       parsed["Big Island (Kona)"] = { food: defaultBigIslandFood, shopping: defaultBigIslandShopping, misc: [] };
-    } else {
-      if (!parsed["Big Island (Kona)"].food || parsed["Big Island (Kona)"].food.length === 0) parsed["Big Island (Kona)"].food = defaultBigIslandFood;
-      if (!parsed["Big Island (Kona)"].shopping || parsed["Big Island (Kona)"].shopping.length === 0) parsed["Big Island (Kona)"].shopping = defaultBigIslandShopping;
     }
-
-    // Phoenix defaults
     if (!parsed["Phoenix (Arizona)"]) {
       parsed["Phoenix (Arizona)"] = { food: defaultPhoenixFood, shopping: defaultPhoenixShopping, misc: [] };
-    } else {
-      if (!parsed["Phoenix (Arizona)"].food || parsed["Phoenix (Arizona)"].food.length === 0) parsed["Phoenix (Arizona)"].food = defaultPhoenixFood;
-      if (!parsed["Phoenix (Arizona)"].shopping || parsed["Phoenix (Arizona)"].shopping.length === 0) parsed["Phoenix (Arizona)"].shopping = defaultPhoenixShopping;
     }
-
     if (!parsed["Phoenix"]) {
       parsed["Phoenix"] = { food: defaultPhoenixFood, shopping: defaultPhoenixShopping, misc: [] };
-    } else {
-      if (!parsed["Phoenix"].food || parsed["Phoenix"].food.length === 0) parsed["Phoenix"].food = defaultPhoenixFood;
-      if (!parsed["Phoenix"].shopping || parsed["Phoenix"].shopping.length === 0) parsed["Phoenix"].shopping = defaultPhoenixShopping;
     }
-
-    // Rancho Cucamonga defaults
     if (!parsed["Rancho Cucamonga (CA)"]) {
       parsed["Rancho Cucamonga (CA)"] = { food: defaultRanchoFood, shopping: defaultRanchoShopping, misc: [] };
-    } else {
-      if (!parsed["Rancho Cucamonga (CA)"].food || parsed["Rancho Cucamonga (CA)"].food.length === 0) parsed["Rancho Cucamonga (CA)"].food = defaultRanchoFood;
-      if (!parsed["Rancho Cucamonga (CA)"].shopping || parsed["Rancho Cucamonga (CA)"].shopping.length === 0) parsed["Rancho Cucamonga (CA)"].shopping = defaultRanchoShopping;
     }
-
     if (!parsed["Rancho Cucamonga"]) {
       parsed["Rancho Cucamonga"] = { food: defaultRanchoFood, shopping: defaultRanchoShopping, misc: [] };
-    } else {
-      if (!parsed["Rancho Cucamonga"].food || parsed["Rancho Cucamonga"].food.length === 0) parsed["Rancho Cucamonga"].food = defaultRanchoFood;
-      if (!parsed["Rancho Cucamonga"].shopping || parsed["Rancho Cucamonga"].shopping.length === 0) parsed["Rancho Cucamonga"].shopping = defaultRanchoShopping;
     }
 
     return parsed;
@@ -294,7 +252,6 @@ export default function App() {
     setExpandedDay(expandedDay === id ? null : id);
   };
 
-  // Daily Notes Handlers
   const handleAddNote = (dayId, category) => {
     const text = inputState[`${dayId}-${category}`];
     if (!text || !text.trim()) return;
@@ -328,7 +285,6 @@ export default function App() {
     });
   };
 
-  // Region/Destination Notes Handlers
   const handleAddRegionNote = (regionName, category) => {
     const text = inputState[`reg-${regionName}-${category}`];
     if (!text || !text.trim()) return;
@@ -366,13 +322,11 @@ export default function App() {
   const totalRegionNotes = (currentRegionNotes.food?.length || 0) + (currentRegionNotes.shopping?.length || 0) + (currentRegionNotes.misc?.length || 0);
 
   const activeVisual = regionVisuals[selectedRegion] || regionVisuals['Alle'];
-
   const isSelectedHawaii = initialItinerary.find(i => i.region === selectedRegion)?.isHawaii;
   const currentWaterTemp = regionCoords[selectedRegion]?.waterTemp;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-3 sm:p-6 font-sans relative overflow-x-hidden">
-      {/* Background Glow Accents */}
       <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -410,7 +364,6 @@ export default function App() {
             </div>
 
             <div className="flex gap-2 flex-wrap">
-              {/* Live Weather Widget */}
               <div className="bg-slate-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10 flex items-center gap-2 shadow-lg">
                 <CloudSun className="w-4 h-4 text-sky-400" />
                 <div className="text-right">
@@ -421,7 +374,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Water Temperature Widget */}
               {currentWaterTemp && (
                 <div className="bg-slate-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-teal-500/30 flex items-center gap-2 shadow-lg">
                   <Waves className="w-4 h-4 text-teal-300" />
@@ -432,7 +384,6 @@ export default function App() {
                 </div>
               )}
 
-              {/* Countdown Badge */}
               <div className="bg-slate-900/80 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/10 flex items-center gap-2.5 shadow-lg">
                 <Clock className="w-4 h-4 text-amber-400 animate-pulse" />
                 <div className="text-right">
@@ -608,7 +559,6 @@ export default function App() {
                         <h2 className="font-bold text-slate-100 text-base">{item.date}</h2>
                       </div>
                       
-                      {/* Region Badge */}
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 backdrop-blur-md ${
                         item.isFlight 
                           ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' 
@@ -632,11 +582,30 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Hotel Badge pro Tag */}
+                    {/* Hotel Badge mit Check-in & Check-out Zeiten */}
                     {item.hotel && (
-                      <div className="mb-3 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center gap-2 text-xs text-amber-300 font-medium">
-                        <Hotel className="w-4 h-4 text-amber-400 flex-shrink-0" />
-                        <span><strong>Unterkunft:</strong> {item.hotel}</span>
+                      <div className="mb-3 px-3.5 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 flex flex-wrap items-center justify-between gap-2 text-xs text-amber-300 font-medium">
+                        <div className="flex items-center gap-2">
+                          <Hotel className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                          <span><strong>Unterkunft:</strong> {item.hotel}</span>
+                        </div>
+                        <div className="flex gap-2">
+                          {item.checkOutPrev && (
+                            <span className="px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30 font-semibold text-[11px]">
+                              🔑 Check-out {item.checkOutPrev}
+                            </span>
+                          )}
+                          {item.checkOut && (
+                            <span className="px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30 font-semibold text-[11px]">
+                              🔑 Check-out {item.checkOut}
+                            </span>
+                          )}
+                          {item.checkIn && (
+                            <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold text-[11px]">
+                              🔑 Check-in {item.checkIn}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     )}
 
@@ -763,35 +732,50 @@ export default function App() {
             </div>
           </div>
 
-          {/* Hotel Übersichtskarte */}
+          {/* Hotel Übersichtskarte mit Check-in / Check-out */}
           <div className="bg-slate-950/80 p-5 rounded-2xl border border-amber-500/20 space-y-3">
             <h3 className="text-sm font-bold text-amber-400 flex items-center gap-2">
-              <Hotel className="w-4 h-4" /> Gebuchte Unterkünfte
+              <Hotel className="w-4 h-4" /> Gebuchte Unterkünfte & Zeiten
             </h3>
-            <ul className="space-y-2 text-xs text-slate-300">
-              <li className="flex justify-between border-b border-white/5 pb-1">
+            <ul className="space-y-2.5 text-xs text-slate-300">
+              <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-teal-300">13.–17. Mai (Oahu):</span>
-                <span>Ramada Plaza by Wyndham Waikiki</span>
+                <div className="text-right sm:text-right text-left">
+                  <div className="text-slate-100 font-medium">Ramada Plaza by Wyndham Waikiki</div>
+                  <div className="text-[11px] text-slate-400">Check-in: ab 15:00 Uhr | Check-out: bis 11:00 Uhr</div>
+                </div>
               </li>
-              <li className="flex justify-between border-b border-white/5 pb-1">
+              <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-teal-300">17.–21. Mai (Maui):</span>
-                <span>Maui Seaside Hotel</span>
+                <div className="text-right sm:text-right text-left">
+                  <div className="text-slate-100 font-medium">Maui Seaside Hotel</div>
+                  <div className="text-[11px] text-slate-400">Check-in: ab 16:00 Uhr | Check-out: bis 11:00 Uhr</div>
+                </div>
               </li>
-              <li className="flex justify-between border-b border-white/5 pb-1">
+              <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-teal-300">21.–24. Mai (Big Island):</span>
-                <span>Holiday Inn Express & Suites Kailua-Kona</span>
+                <div className="text-right sm:text-right text-left">
+                  <div className="text-slate-100 font-medium">Holiday Inn Express & Suites Kailua-Kona</div>
+                  <div className="text-[11px] text-slate-400">Check-in: ab 15:00 Uhr | Check-out: bis 11:00 Uhr</div>
+                </div>
               </li>
-              <li className="flex justify-between border-b border-white/5 pb-1">
+              <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-orange-300">25.–29. Mai (Phoenix):</span>
-                <span>Holiday Inn Express & Suites Phoenix West - Tolleson</span>
+                <div className="text-right sm:text-right text-left">
+                  <div className="text-slate-100 font-medium">Holiday Inn Express & Suites Phoenix West - Tolleson</div>
+                  <div className="text-[11px] text-slate-400">Check-in: ab 15:00 Uhr | Check-out: bis 11:00 Uhr</div>
+                </div>
               </li>
-              <li className="flex justify-between border-b border-white/5 pb-1">
+              <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-orange-300">29. Mai – 03. Jun (Rancho Cucamonga):</span>
-                <span>Best Western Plus Heritage Inn Ontario Rancho Cucamonga</span>
+                <div className="text-right sm:text-right text-left">
+                  <div className="text-slate-100 font-medium">Best Western Plus Heritage Inn Ontario Rancho Cucamonga</div>
+                  <div className="text-[11px] text-slate-400">Check-in: ab 15:00 Uhr | Check-out: bis 12:00 Uhr</div>
+                </div>
               </li>
-              <li className="flex justify-between">
-                <span className="font-semibold text-orange-300">Los Angeles:</span>
-                <span>Kein Hotel (Tagesausflüge & Rückflug ab LAX)</span>
+              <li className="flex flex-col sm:flex-row justify-between gap-1 pt-1">
+                <span className="font-semibold text-orange-300">03. Juni (Los Angeles):</span>
+                <span className="text-slate-400">Kein Hotel (Tagesausflüge & Rückflug ab LAX)</span>
               </li>
             </ul>
           </div>
