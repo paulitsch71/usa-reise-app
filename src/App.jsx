@@ -3,6 +3,17 @@ import {
   Calendar, MapPin, Plane, Utensils, ShoppingBag, 
   FileText, Plus, Trash2, ChevronDown, ChevronUp, Bookmark, Clock, Compass, Sun, Palmtree, CloudSun, Waves, Hotel
 } from 'lucide-react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Fix für Standard-Marker-Icons in React-Leaflet
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
 
 const initialItinerary = [
   { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Ramada Plaza by Wyndham Waikiki", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
@@ -44,6 +55,14 @@ const regionCoords = {
   'Flug': { lat: 34.0522, lon: -118.2437, waterTemp: null },
   'Frankfurt (Ankunft)': { lat: 50.1109, lon: 8.6821, waterTemp: null }
 };
+
+const mapPins = [
+  { name: "Oahu (Honolulu)", lat: 21.3069, lon: -157.8583, desc: "Ramada Plaza Waikiki (13.–17. Mai)" },
+  { name: "Maui (Kahului)", lat: 20.8893, lon: -156.4729, desc: "Maui Seaside Hotel (17.–21. Mai)" },
+  { name: "Big Island (Kona)", lat: 19.6400, lon: -155.9969, desc: "Holiday Inn Express Kona (21.–24. Mai)" },
+  { name: "Phoenix (AZ)", lat: 33.4484, lon: -112.0740, desc: "Holiday Inn Express Phoenix West (25.–29. Mai)" },
+  { name: "Rancho Cucamonga (CA)", lat: 34.1064, lon: -117.5931, desc: "Best Western Plus (29. Mai – 03. Juni)" }
+];
 
 const regionVisuals = {
   'Alle': { title: "Gesamte USA & Hawaii Reise", bg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" },
@@ -429,69 +448,33 @@ export default function App() {
             })}
           </div>
 
-          {/* Visuelle Stecknadel-Übersichtskarte, wenn 'Karte' ausgewählt ist */}
+          {/* Interaktive Landkarte, wenn 'Karte' ausgewählt ist */}
           {selectedRegion === 'Karte' && (
-            <div className="bg-slate-900/80 p-6 rounded-2xl border border-blue-500/30 backdrop-blur-xl space-y-6 shadow-xl">
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-blue-500/20 text-blue-300 border border-blue-500/30">
-                  <MapPin className="w-6 h-6" />
+            <div className="bg-slate-900/80 p-5 rounded-2xl border border-blue-500/30 backdrop-blur-xl space-y-4 shadow-xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-blue-400 font-bold text-base">
+                  <MapPin className="w-5 h-5" /> Interaktive Routen- & Zielkarte
                 </div>
-                <div>
-                  <h2 className="text-lg font-bold text-slate-100">Routen- & Stecknadelkarte</h2>
-                  <p className="text-xs text-slate-400">Alle Hauptstationen deiner 23-tägigen Reise auf einen Blick</p>
-                </div>
+                <span className="text-xs text-slate-400">Klicke auf die Pins für Details</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {/* Station 1 */}
-                <div className="bg-slate-950/80 p-4 rounded-xl border border-teal-500/30 space-y-2 hover:border-teal-400 transition-all">
-                  <span className="text-[10px] font-bold text-teal-300 bg-teal-500/20 px-2 py-0.5 rounded border border-teal-500/30">Station 1 • 13.–17. Mai</span>
-                  <h3 className="font-bold text-slate-100 text-sm">🏝️ Oahu (Honolulu)</h3>
-                  <p className="text-xs text-slate-400">Ramada Plaza Waikiki & Waikiki Beach</p>
-                  <a href="https://www.google.com/maps/search/?api=1&query=Ramada+Plaza+Waikiki+Honolulu" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-teal-300 hover:underline pt-1">
-                    📍 Pin auf Google Maps öffnen ↗
-                  </a>
-                </div>
-
-                {/* Station 2 */}
-                <div className="bg-slate-950/80 p-4 rounded-xl border border-teal-500/30 space-y-2 hover:border-teal-400 transition-all">
-                  <span className="text-[10px] font-bold text-teal-300 bg-teal-500/20 px-2 py-0.5 rounded border border-teal-500/30">Station 2 • 17.–21. Mai</span>
-                  <h3 className="font-bold text-slate-100 text-sm">🌋 Maui (Kahului)</h3>
-                  <p className="text-xs text-slate-400">Maui Seaside Hotel & Road to Hana</p>
-                  <a href="https://www.google.com/maps/search/?api=1&query=Maui+Seaside+Hotel+Kahului" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-teal-300 hover:underline pt-1">
-                    📍 Pin auf Google Maps öffnen ↗
-                  </a>
-                </div>
-
-                {/* Station 3 */}
-                <div className="bg-slate-950/80 p-4 rounded-xl border border-teal-500/30 space-y-2 hover:border-teal-400 transition-all">
-                  <span className="text-[10px] font-bold text-teal-300 bg-teal-500/20 px-2 py-0.5 rounded border border-teal-500/30">Station 3 • 21.–24. Mai</span>
-                  <h3 className="font-bold text-slate-100 text-sm">🌺 Big Island (Kona)</h3>
-                  <p className="text-xs text-slate-400">Holiday Inn Express Kona & Vulkane</p>
-                  <a href="https://www.google.com/maps/search/?api=1&query=Holiday+Inn+Express+Kailua-Kona" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-teal-300 hover:underline pt-1">
-                    📍 Pin auf Google Maps öffnen ↗
-                  </a>
-                </div>
-
-                {/* Station 4 */}
-                <div className="bg-slate-950/80 p-4 rounded-xl border border-orange-500/30 space-y-2 hover:border-orange-400 transition-all">
-                  <span className="text-[10px] font-bold text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded border border-orange-500/30">Station 4 • 25.–29. Mai</span>
-                  <h3 className="font-bold text-slate-100 text-sm">🌵 Phoenix (Arizona)</h3>
-                  <p className="text-xs text-slate-400">Holiday Inn Express Phoenix West & Outlets</p>
-                  <a href="https://www.google.com/maps/search/?api=1&query=Holiday+Inn+Express+Phoenix+West+Tolleson" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-orange-300 hover:underline pt-1">
-                    📍 Pin auf Google Maps öffnen ↗
-                  </a>
-                </div>
-
-                {/* Station 5 */}
-                <div className="bg-slate-950/80 p-4 rounded-xl border border-orange-500/30 space-y-2 hover:border-orange-400 transition-all sm:col-span-2 lg:col-span-2">
-                  <span className="text-[10px] font-bold text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded border border-orange-500/30">Station 5 • 29. Mai – 03. Juni</span>
-                  <h3 className="font-bold text-slate-100 text-sm">☀️ Rancho Cucamonga & Los Angeles (CA)</h3>
-                  <p className="text-xs text-slate-400">Best Western Plus & Ausflüge nach Hollywood / Santa Monica</p>
-                  <a href="https://www.google.com/maps/search/?api=1&query=Best+Western+Plus+Rancho+Cucamonga" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-orange-300 hover:underline pt-1">
-                    📍 Pin auf Google Maps öffnen ↗
-                  </a>
-                </div>
+              <div className="h-[420px] w-full rounded-xl overflow-hidden border border-white/10 z-0">
+                <MapContainer center={[25.0, -135.0]} zoom={3} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  {mapPins.map((pin, idx) => (
+                    <Marker key={idx} position={[pin.lat, pin.lon]}>
+                      <Popup>
+                        <div className="text-slate-900 font-sans">
+                          <strong className="block text-sm font-bold text-blue-600">{pin.name}</strong>
+                          <span className="text-xs text-slate-700">{pin.desc}</span>
+                        </div>
+                      </Popup>
+                    </Marker>
+                  ))}
+                </MapContainer>
               </div>
             </div>
           )}
