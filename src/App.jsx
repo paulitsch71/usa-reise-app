@@ -5,27 +5,27 @@ import {
 } from 'lucide-react';
 
 const initialItinerary = [
-  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Ramada Plaza by Wyndham Waikiki", checkIn: "ab 15:00 Uhr" },
-  { id: 2, date: "Fr, 14.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Freizeit in Honolulu (z. B. Waikiki Beach)", evening: "Entspannung nach dem Langstreckenflug", hotel: "Ramada Plaza by Wyndham Waikiki" },
-  { id: 3, date: "Sa, 15.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Erkundung von Oahu auf eigene Faust", evening: "Freizeit auf der Hauptinsel", hotel: "Ramada Plaza by Wyndham Waikiki" },
-  { id: 4, date: "So, 16.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Ausflug oder Strandtag auf Oahu", evening: "Abendstimmung in Honolulu genießen", hotel: "Ramada Plaza by Wyndham Waikiki" },
-  { id: 5, date: "Mo, 17.05.2027", region: "Maui (Kahului)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Honolulu (HNL) nach Kahului (OGG), Maui", evening: "Mietwagenübernahme & Hotel-Check-in auf Maui", hotel: "Maui Seaside Hotel", checkOutPrev: "Ramada Plaza (bis 11:00 Uhr)", checkIn: "ab 16:00 Uhr" },
-  { id: 6, date: "Di, 18.05.2027", region: "Maui", isHawaii: true, morning: "Erkundung von Maui (z. B. Road to Hana oder Strände)", evening: "Gemütlicher Abend auf Maui", hotel: "Maui Seaside Hotel" },
-  { id: 7, date: "Mi, 19.05.2027", region: "Maui", isHawaii: true, morning: "Freizeit auf Maui / Aktivität nach Wahl", evening: "Entspannung im Resort / Ort", hotel: "Maui Seaside Hotel" },
-  { id: 8, date: "Do, 20.05.2027", region: "Maui", isHawaii: true, morning: "Weiterer Tag für Highlight-Spots auf Maui", evening: "Sonnenuntergang genießen", hotel: "Maui Seaside Hotel" },
-  { id: 9, date: "Fr, 21.05.2027", region: "Big Island (Kona)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Kahului (OGG) nach Kona (KOA), Big Island", evening: "Ankunft, Mietwagen & Hotel-Check-in in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona", checkOutPrev: "Maui Seaside (bis 11:00 Uhr)", checkIn: "ab 15:00 Uhr" },
-  { id: 10, date: "Sa, 22.05.2027", region: "Big Island", isHawaii: true, morning: "Erkundung der Vulkaninsel (z. B. Kona Coast / Hawaii Volcanoes NP)", evening: "Abend in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona" },
-  { id: 11, date: "So, 23.05.2027", region: "Big Island", isHawaii: true, morning: "Freizeit oder Ausflug auf Big Island", evening: "Entspannter Ausklang", hotel: "Holiday Inn Express & Suites Kailua-Kona" },
+  { id: 1, date: "Do, 13.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Flug DE 2096: FRA 11:55 Uhr ✈️ 14:40 Uhr SFO (San Francisco)", evening: "Flug AS 861: SFO 19:55 Uhr ✈️ 22:45 Uhr HNL (Honolulu)", hotel: "Ramada Plaza by Wyndham Waikiki", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 2, date: "Fr, 14.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Freizeit in Honolulu (z. B. Waikiki Beach)", evening: "Entspannung nach dem Langstreckenflug", hotel: "Ramada Plaza by Wyndham Waikiki", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 3, date: "Sa, 15.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Erkundung von Oahu auf eigene Faust", evening: "Freizeit auf der Hauptinsel", hotel: "Ramada Plaza by Wyndham Waikiki", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 4, date: "So, 16.05.2027", region: "Oahu (Honolulu)", isHawaii: true, morning: "Ausflug oder Strandtag auf Oahu", evening: "Abendstimmung in Honolulu genießen", hotel: "Ramada Plaza by Wyndham Waikiki", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 5, date: "Mo, 17.05.2027", region: "Maui (Kahului)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Honolulu (HNL) nach Kahului (OGG), Maui", evening: "Mietwagenübernahme & Hotel-Check-in auf Maui", hotel: "Maui Seaside Hotel", checkOutPrev: "Ramada Plaza (bis 11:00 Uhr)", checkIn: "ab 16:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 6, date: "Di, 18.05.2027", region: "Maui", isHawaii: true, morning: "Erkundung von Maui (z. B. Road to Hana oder Strände)", evening: "Gemütlicher Abend auf Maui", hotel: "Maui Seaside Hotel", checkIn: "ab 16:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 7, date: "Mi, 19.05.2027", region: "Maui", isHawaii: true, morning: "Freizeit auf Maui / Aktivität nach Wahl", evening: "Entspannung im Resort / Ort", hotel: "Maui Seaside Hotel", checkIn: "ab 16:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 8, date: "Do, 20.05.2027", region: "Maui", isHawaii: true, morning: "Weiterer Tag für Highlight-Spots auf Maui", evening: "Sonnenuntergang genießen", hotel: "Maui Seaside Hotel", checkIn: "ab 16:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 9, date: "Fr, 21.05.2027", region: "Big Island (Kona)", isFlight: true, isHawaii: true, morning: "Inselwechsel: Flug von Kahului (OGG) nach Kona (KOA), Big Island", evening: "Ankunft, Mietwagen & Hotel-Check-in in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona", checkOutPrev: "Maui Seaside (bis 11:00 Uhr)", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 10, date: "Sa, 22.05.2027", region: "Big Island", isHawaii: true, morning: "Erkundung der Vulkaninsel (z. B. Kona Coast / Hawaii Volcanoes NP)", evening: "Abend in Kona", hotel: "Holiday Inn Express & Suites Kailua-Kona", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 11, date: "So, 23.05.2027", region: "Big Island", isHawaii: true, morning: "Freizeit oder Ausflug auf Big Island", evening: "Entspannter Ausklang", hotel: "Holiday Inn Express & Suites Kailua-Kona", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
   { id: 12, date: "Mo, 24.05.2027", region: "Flug", isFlight: true, isHawaii: true, morning: "Letzter Tag auf Big Island / Abreisevorbereitung", evening: "Flug AA 664: KOA 21:55 Uhr ✈️ 06:47 Uhr PHX (Phoenix, Ankunft 25.05.)", hotel: "Nachtflug nach Phoenix", checkOut: "Holiday Inn Kona (bis 11:00 Uhr)" },
-  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson", checkIn: "ab 15:00 Uhr" },
-  { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
-  { id: 15, date: "Do, 27.05.2027", region: "Phoenix", isHawaii: false, morning: "Tagesausflug (z. B. Sedona oder Outlets)", evening: "Abendstimmung in Arizona", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
-  { id: 16, date: "Fr, 28.05.2027", region: "Phoenix", isHawaii: false, morning: "Shopping & Sightseeing in Phoenix", evening: "Entspannung am Abend", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson" },
-  { id: 17, date: "Sa, 29.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga", checkOutPrev: "Holiday Inn Phoenix (bis 11:00 Uhr)", checkIn: "ab 15:00 Uhr" },
-  { id: 18, date: "So, 30.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Sightseeing im LA-Großraum (z. B. Hollywood / Santa Monica)", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
-  { id: 19, date: "Mo, 31.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Freizeit / Shopping in Ontario / Rancho Cucamonga", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
-  { id: 20, date: "Di, 01.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Ausflug in die Umgebung oder Entspannung", evening: "Ausklang des Tages", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
-  { id: 21, date: "Mi, 02.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Letzter Tag in Kalifornien / Koffer packen", evening: "Abend in Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga" },
+  { id: 13, date: "Di, 25.05.2027", region: "Phoenix (Arizona)", isFlight: true, isHawaii: false, morning: "Ankunft in Phoenix (PHX) um 06:47 Uhr morgens", evening: "Transfer, Hotel-Check-in & Entspannung", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 14, date: "Mi, 26.05.2027", region: "Phoenix", isHawaii: false, morning: "Erkundung von Phoenix / Scottsdale", evening: "Abendessen & Freizeit in Phoenix", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 15, date: "Do, 27.05.2027", region: "Phoenix", isHawaii: false, morning: "Tagesausflug (z. B. Sedona oder Outlets)", evening: "Abendstimmung in Arizona", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 16, date: "Fr, 28.05.2027", region: "Phoenix", isHawaii: false, morning: "Shopping & Sightseeing in Phoenix", evening: "Entspannung am Abend", hotel: "Holiday Inn Express & Suites Phoenix West - Tolleson", checkIn: "ab 15:00 Uhr", checkOut: "bis 11:00 Uhr" },
+  { id: 17, date: "Sa, 29.05.2027", region: "Rancho Cucamonga (CA)", isFlight: true, isHawaii: false, morning: "Fahrt / Weiterreise nach Rancho Cucamonga, Kalifornien", evening: "Check-in & Entspannung", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga", checkOutPrev: "Holiday Inn Phoenix (bis 11:00 Uhr)", checkIn: "ab 15:00 Uhr", checkOut: "bis 12:00 Uhr" },
+  { id: 18, date: "So, 30.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Sightseeing im LA-Großraum (z. B. Hollywood / Santa Monica)", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga", checkIn: "ab 15:00 Uhr", checkOut: "bis 12:00 Uhr" },
+  { id: 19, date: "Mo, 31.05.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Freizeit / Shopping in Ontario / Rancho Cucamonga", evening: "Rückkehr nach Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga", checkIn: "ab 15:00 Uhr", checkOut: "bis 12:00 Uhr" },
+  { id: 20, date: "Di, 01.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Ausflug in die Umgebung oder Entspannung", evening: "Ausklang des Tages", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga", checkIn: "ab 15:00 Uhr", checkOut: "bis 12:00 Uhr" },
+  { id: 21, date: "Mi, 02.06.2027", region: "Rancho Cucamonga", isHawaii: false, morning: "Letzter Tag in Kalifornien / Koffer packen", evening: "Abend in Rancho Cucamonga", hotel: "Best Western Plus Heritage Inn Ontario Rancho Cucamonga", checkIn: "ab 15:00 Uhr", checkOut: "bis 12:00 Uhr" },
   { id: 22, date: "Do, 03.06.2027", region: "Flug", isFlight: true, isHawaii: false, morning: "Fahrt zum Flughafen LAX / Flug AS 1403: LAX 13:29 Uhr ✈️ 14:55 Uhr SFO", evening: "Flug DE 2097: SFO 16:40 Uhr ✈️ Richtung Frankfurt", hotel: "Rückflug nach FRA", checkOutPrev: "Best Western Rancho (bis 12:00 Uhr)" },
   { id: 23, date: "Fr, 04.06.2027", region: "Frankfurt (Ankunft)", isFlight: true, isHawaii: false, morning: "Ankunft am Flughafen Frankfurt (FRA) um 12:45 Uhr", evening: "Heimreise & Urlaubsabschluss", hotel: "Zuhause" }
 ];
@@ -242,9 +242,9 @@ export default function App() {
     localStorage.setItem('usa2027_region_reminders', JSON.stringify(regionReminders));
   }, [regionReminders]);
 
-  const regions = ['Alle', ...new Set(initialItinerary.map(item => item.region))];
+  const regions = ['Alle', 'Karte', ...new Set(initialItinerary.map(item => item.region))];
 
-  const filteredItinerary = selectedRegion === 'Alle' 
+  const filteredItinerary = (selectedRegion === 'Alle' || selectedRegion === 'Karte')
     ? initialItinerary 
     : initialItinerary.filter(item => item.region === selectedRegion);
 
@@ -400,316 +400,390 @@ export default function App() {
 
       {activeTab === 'plan' && (
         <main className="max-w-4xl mx-auto space-y-5">
-          {/* Region Filter Bar */}
+          {/* Region Filter Bar mit 'Karte' Button */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none bg-slate-900/40 p-2 rounded-2xl border border-white/5 backdrop-blur-md">
             <Compass className="w-4 h-4 text-blue-400 ml-2 flex-shrink-0" />
             {regions.map(r => {
               const isHaw = initialItinerary.find(i => i.region === r)?.isHawaii;
+              const isMap = r === 'Karte';
               return (
                 <button
                   key={r}
                   onClick={() => setSelectedRegion(r)}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all flex items-center gap-1.5 ${
                     selectedRegion === r 
-                      ? (isHaw 
-                          ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg border border-teal-400/40' 
-                          : 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg border border-orange-400/40')
+                      ? (isMap
+                          ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg border border-blue-400/40'
+                          : (isHaw 
+                              ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg border border-teal-400/40' 
+                              : 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg border border-orange-400/40'))
                       : 'bg-slate-800/40 text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 border border-white/5'
                   }`}
                 >
-                  {isHaw && <Palmtree className="w-3 h-3 text-teal-300" />}
-                  {!isHaw && r !== 'Alle' && r !== 'Flug' && r !== 'Frankfurt (Ankunft)' && <Sun className="w-3 h-3 text-amber-400" />}
+                  {isMap && <MapPin className="w-3 h-3 text-blue-300" />}
+                  {isHaw && !isMap && <Palmtree className="w-3 h-3 text-teal-300" />}
+                  {!isHaw && !isMap && r !== 'Alle' && r !== 'Flug' && r !== 'Frankfurt (Ankunft)' && <Sun className="w-3 h-3 text-amber-400" />}
                   {r}
                 </button>
               );
             })}
           </div>
 
-          {/* Region Overview Card */}
-          <div className={`rounded-2xl border shadow-xl overflow-hidden backdrop-blur-xl transition-all ${
-            isSelectedHawaii 
-              ? 'bg-gradient-to-b from-teal-950/40 to-slate-900/60 border-teal-500/30' 
-              : 'bg-gradient-to-b from-orange-950/30 to-slate-900/60 border-orange-500/20'
-          }`}>
-            <button 
-              onClick={() => setIsRegionNotesExpanded(!isRegionNotesExpanded)}
-              className={`w-full p-4 flex items-center justify-between text-left transition-all ${
-                isSelectedHawaii ? 'bg-teal-900/20 hover:bg-teal-900/30' : 'bg-orange-900/20 hover:bg-orange-900/30'
-              }`}
-            >
+          {/* Visuelle Stecknadel-Übersichtskarte, wenn 'Karte' ausgewählt ist */}
+          {selectedRegion === 'Karte' && (
+            <div className="bg-slate-900/80 p-6 rounded-2xl border border-blue-500/30 backdrop-blur-xl space-y-6 shadow-xl">
               <div className="flex items-center gap-3">
-                <div className={`p-2 rounded-xl border ${
-                  isSelectedHawaii ? 'bg-teal-500/20 text-teal-300 border-teal-500/30' : 'bg-orange-500/20 text-orange-300 border-orange-500/30'
-                }`}>
-                  <Bookmark className="w-5 h-5" />
+                <div className="p-2.5 rounded-xl bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                  <MapPin className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2">
-                    Allgemeine Notizen für: 
-                    <span className={isSelectedHawaii ? 'text-teal-300 font-extrabold' : 'text-amber-400 font-extrabold'}>
-                      {selectedRegion}
-                    </span>
-                  </h3>
-                  <p className="text-[11px] text-slate-400">
-                    {isSelectedHawaii ? '🏝️ Hawaii-Insel Tipps' : '🏜️ Festland / USA Tipps'} ({totalRegionNotes} Einträge)
-                  </p>
+                  <h2 className="text-lg font-bold text-slate-100">Routen- & Stecknadelkarte</h2>
+                  <p className="text-xs text-slate-400">Alle Hauptstationen deiner 23-tägigen Reise auf einen Blick</p>
                 </div>
               </div>
-              {isRegionNotesExpanded ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-            </button>
 
-            {isRegionNotesExpanded && (
-              <div className="p-4 bg-slate-950/80 border-t border-white/5 space-y-4">
-                {/* Food Category */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
-                    <Utensils className="w-3.5 h-3.5" /> Gastro & Restaurant-Tipps für {selectedRegion}
-                  </div>
-                  <ul className="space-y-1.5">
-                    {currentRegionNotes.food?.map((note, i) => (
-                      <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
-                        <span className="text-slate-200">{note}</span>
-                        <button onClick={() => handleDeleteRegionNote(selectedRegion, 'food', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex gap-2">
-                    <input 
-                      type="text" 
-                      placeholder={`Neuer Restaurant-Tipp für ${selectedRegion}...`}
-                      className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-teal-500 text-slate-200 placeholder:text-slate-500"
-                      value={inputState[`reg-${selectedRegion}-food`] || ''}
-                      onChange={e => setInputState({ ...inputState, [`reg-${selectedRegion}-food`]: e.target.value })}
-                      onKeyDown={e => e.key === 'Enter' && handleAddRegionNote(selectedRegion, 'food')}
-                    />
-                    <button onClick={() => handleAddRegionNote(selectedRegion, 'food')} className="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {/* Station 1 */}
+                <div className="bg-slate-950/80 p-4 rounded-xl border border-teal-500/30 space-y-2 hover:border-teal-400 transition-all">
+                  <span className="text-[10px] font-bold text-teal-300 bg-teal-500/20 px-2 py-0.5 rounded border border-teal-500/30">Station 1 • 13.–17. Mai</span>
+                  <h3 className="font-bold text-slate-100 text-sm">🏝️ Oahu (Honolulu)</h3>
+                  <p className="text-xs text-slate-400">Ramada Plaza Waikiki & Waikiki Beach</p>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Ramada+Plaza+Waikiki+Honolulu" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-teal-300 hover:underline pt-1">
+                    📍 Pin auf Google Maps öffnen ↗
+                  </a>
                 </div>
 
-                {/* Shopping Category */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-pink-400">
-                    <ShoppingBag className="w-3.5 h-3.5" /> Shopping & Supermärkte auf {selectedRegion}
-                  </div>
-                  <ul className="space-y-1.5">
-                    {currentRegionNotes.shopping?.map((note, i) => (
-                      <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
-                        <span className="text-slate-200">{note}</span>
-                        <button onClick={() => handleDeleteRegionNote(selectedRegion, 'shopping', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex gap-2">
-                    <input 
-                      type="text" 
-                      placeholder={`Shopping-Tipp für ${selectedRegion}...`}
-                      className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-teal-500 text-slate-200 placeholder:text-slate-500"
-                      value={inputState[`reg-${selectedRegion}-shopping`] || ''}
-                      onChange={e => setInputState({ ...inputState, [`reg-${selectedRegion}-shopping`]: e.target.value })}
-                      onKeyDown={e => e.key === 'Enter' && handleAddRegionNote(selectedRegion, 'shopping')}
-                    />
-                    <button onClick={() => handleAddRegionNote(selectedRegion, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
-                  </div>
+                {/* Station 2 */}
+                <div className="bg-slate-950/80 p-4 rounded-xl border border-teal-500/30 space-y-2 hover:border-teal-400 transition-all">
+                  <span className="text-[10px] font-bold text-teal-300 bg-teal-500/20 px-2 py-0.5 rounded border border-teal-500/30">Station 2 • 17.–21. Mai</span>
+                  <h3 className="font-bold text-slate-100 text-sm">🌋 Maui (Kahului)</h3>
+                  <p className="text-xs text-slate-400">Maui Seaside Hotel & Road to Hana</p>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Maui+Seaside+Hotel+Kahului" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-teal-300 hover:underline pt-1">
+                    📍 Pin auf Google Maps öffnen ↗
+                  </a>
                 </div>
 
-                {/* Misc Category */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-sky-400">
-                    <FileText className="w-3.5 h-3.5" /> Sonstiges & Highlights für {selectedRegion}
-                  </div>
-                  <ul className="space-y-1.5">
-                    {currentRegionNotes.misc?.map((note, i) => (
-                      <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
-                        <span className="text-slate-200">{note}</span>
-                        <button onClick={() => handleDeleteRegionNote(selectedRegion, 'misc', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex gap-2">
-                    <input 
-                      type="text" 
-                      placeholder={`Reminder/Highlight für ${selectedRegion}...`}
-                      className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-teal-500 text-slate-200 placeholder:text-slate-500"
-                      value={inputState[`reg-${selectedRegion}-misc`] || ''}
-                      onChange={e => setInputState({ ...inputState, [`reg-${selectedRegion}-misc`]: e.target.value })}
-                      onKeyDown={e => e.key === 'Enter' && handleAddRegionNote(selectedRegion, 'misc')}
-                    />
-                    <button onClick={() => handleAddRegionNote(selectedRegion, 'misc')} className="bg-sky-600 hover:bg-sky-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
-                  </div>
+                {/* Station 3 */}
+                <div className="bg-slate-950/80 p-4 rounded-xl border border-teal-500/30 space-y-2 hover:border-teal-400 transition-all">
+                  <span className="text-[10px] font-bold text-teal-300 bg-teal-500/20 px-2 py-0.5 rounded border border-teal-500/30">Station 3 • 21.–24. Mai</span>
+                  <h3 className="font-bold text-slate-100 text-sm">🌺 Big Island (Kona)</h3>
+                  <p className="text-xs text-slate-400">Holiday Inn Express Kona & Vulkane</p>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Holiday+Inn+Express+Kailua-Kona" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-teal-300 hover:underline pt-1">
+                    📍 Pin auf Google Maps öffnen ↗
+                  </a>
+                </div>
+
+                {/* Station 4 */}
+                <div className="bg-slate-950/80 p-4 rounded-xl border border-orange-500/30 space-y-2 hover:border-orange-400 transition-all">
+                  <span className="text-[10px] font-bold text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded border border-orange-500/30">Station 4 • 25.–29. Mai</span>
+                  <h3 className="font-bold text-slate-100 text-sm">🌵 Phoenix (Arizona)</h3>
+                  <p className="text-xs text-slate-400">Holiday Inn Express Phoenix West & Outlets</p>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Holiday+Inn+Express+Phoenix+West+Tolleson" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-orange-300 hover:underline pt-1">
+                    📍 Pin auf Google Maps öffnen ↗
+                  </a>
+                </div>
+
+                {/* Station 5 */}
+                <div className="bg-slate-950/80 p-4 rounded-xl border border-orange-500/30 space-y-2 hover:border-orange-400 transition-all sm:col-span-2 lg:col-span-2">
+                  <span className="text-[10px] font-bold text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded border border-orange-500/30">Station 5 • 29. Mai – 03. Juni</span>
+                  <h3 className="font-bold text-slate-100 text-sm">☀️ Rancho Cucamonga & Los Angeles (CA)</h3>
+                  <p className="text-xs text-slate-400">Best Western Plus & Ausflüge nach Hollywood / Santa Monica</p>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Best+Western+Plus+Rancho+Cucamonga" target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold text-orange-300 hover:underline pt-1">
+                    📍 Pin auf Google Maps öffnen ↗
+                  </a>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
-          {/* Daily Cards */}
-          <div className="space-y-4">
-            {filteredItinerary.map((item) => {
-              const dayNotes = reminders[item.id] || { food: [], shopping: [], misc: [] };
-              const isExpanded = expandedDay === item.id;
-              const totalNotes = (dayNotes.food?.length || 0) + (dayNotes.shopping?.length || 0) + (dayNotes.misc?.length || 0);
-
-              return (
-                <div key={item.id} className="bg-slate-900/50 rounded-2xl border border-white/10 shadow-lg overflow-hidden backdrop-blur-md transition-all hover:border-white/20">
-                  <div className="p-4 sm:p-5">
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="flex items-center gap-2.5">
-                        <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                          <Calendar className="w-4 h-4" />
-                        </div>
-                        <h2 className="font-bold text-slate-100 text-base">{item.date}</h2>
-                      </div>
-                      
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 backdrop-blur-md ${
-                        item.isFlight 
-                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' 
-                          : (item.isHawaii 
-                              ? 'bg-teal-500/20 text-teal-300 border border-teal-500/30' 
-                              : 'bg-orange-500/20 text-orange-300 border border-orange-500/30')
-                      }`}>
-                        {item.isFlight ? <Plane className="w-3 h-3" /> : (item.isHawaii ? <Palmtree className="w-3 h-3" /> : <MapPin className="w-3 h-3" />)}
-                        {item.region}
+          {/* Region Overview Card (nur wenn nicht 'Karte' gewählt) */}
+          {selectedRegion !== 'Karte' && (
+            <div className={`rounded-2xl border shadow-xl overflow-hidden backdrop-blur-xl transition-all ${
+              isSelectedHawaii 
+                ? 'bg-gradient-to-b from-teal-950/40 to-slate-900/60 border-teal-500/30' 
+                : 'bg-gradient-to-b from-orange-950/30 to-slate-900/60 border-orange-500/20'
+            }`}>
+              <button 
+                onClick={() => setIsRegionNotesExpanded(!isRegionNotesExpanded)}
+                className={`w-full p-4 flex items-center justify-between text-left transition-all ${
+                  isSelectedHawaii ? 'bg-teal-900/20 hover:bg-teal-900/30' : 'bg-orange-900/20 hover:bg-orange-900/30'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`p-2 rounded-xl border ${
+                    isSelectedHawaii ? 'bg-teal-500/20 text-teal-300 border-teal-500/30' : 'bg-orange-500/20 text-orange-300 border-orange-500/30'
+                  }`}>
+                    <Bookmark className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2">
+                      Allgemeine Notizen für: 
+                      <span className={isSelectedHawaii ? 'text-teal-300 font-extrabold' : 'text-amber-400 font-extrabold'}>
+                        {selectedRegion}
                       </span>
-                    </div>
+                    </h3>
+                    <p className="text-[11px] text-slate-400">
+                      {isSelectedHawaii ? '🏝️ Hawaii-Insel Tipps' : '🏜️ Festland / USA Tipps'} ({totalRegionNotes} Einträge)
+                    </p>
+                  </div>
+                </div>
+                {isRegionNotesExpanded ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+              </button>
 
-                    <div className="grid md:grid-cols-2 gap-3 text-xs mb-3">
-                      <div className="bg-slate-950/60 p-3.5 rounded-xl border border-white/5">
-                        <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">Vormittag</span>
-                        <p className="text-slate-300 font-medium leading-relaxed">{item.morning}</p>
-                      </div>
-                      <div className="bg-slate-950/60 p-3.5 rounded-xl border border-white/5">
-                        <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block mb-1">Nachmittag / Abend</span>
-                        <p className="text-slate-300 font-medium leading-relaxed">{item.evening}</p>
-                      </div>
+              {isRegionNotesExpanded && (
+                <div className="p-4 bg-slate-950/80 border-t border-white/5 space-y-4">
+                  {/* Food Category */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
+                      <Utensils className="w-3.5 h-3.5" /> Gastro & Restaurant-Tipps für {selectedRegion}
                     </div>
+                    <ul className="space-y-1.5">
+                      {currentRegionNotes.food?.map((note, i) => (
+                        <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
+                          <span className="text-slate-200">{note}</span>
+                          <button onClick={() => handleDeleteRegionNote(selectedRegion, 'food', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex gap-2">
+                      <input 
+                        type="text" 
+                        placeholder={`Neuer Restaurant-Tipp für ${selectedRegion}...`}
+                        className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-teal-500 text-slate-200 placeholder:text-slate-500"
+                        value={inputState[`reg-${selectedRegion}-food`] || ''}
+                        onChange={e => setInputState({ ...inputState, [`reg-${selectedRegion}-food`]: e.target.value })}
+                        onKeyDown={e => e.key === 'Enter' && handleAddRegionNote(selectedRegion, 'food')}
+                      />
+                      <button onClick={() => handleAddRegionNote(selectedRegion, 'food')} className="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                    </div>
+                  </div>
 
-                    {/* Hotel Badge mit Check-in & Check-out Zeiten */}
-                    {item.hotel && (
-                      <div className="mb-3 px-3.5 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 flex flex-wrap items-center justify-between gap-2 text-xs text-amber-300 font-medium">
-                        <div className="flex items-center gap-2">
-                          <Hotel className="w-4 h-4 text-amber-400 flex-shrink-0" />
-                          <span><strong>Unterkunft:</strong> {item.hotel}</span>
+                  {/* Shopping Category */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-pink-400">
+                      <ShoppingBag className="w-3.5 h-3.5" /> Shopping & Supermärkte auf {selectedRegion}
+                    </div>
+                    <ul className="space-y-1.5">
+                      {currentRegionNotes.shopping?.map((note, i) => (
+                        <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
+                          <span className="text-slate-200">{note}</span>
+                          <button onClick={() => handleDeleteRegionNote(selectedRegion, 'shopping', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex gap-2">
+                      <input 
+                        type="text" 
+                        placeholder={`Shopping-Tipp für ${selectedRegion}...`}
+                        className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-teal-500 text-slate-200 placeholder:text-slate-500"
+                        value={inputState[`reg-${selectedRegion}-shopping`] || ''}
+                        onChange={e => setInputState({ ...inputState, [`reg-${selectedRegion}-shopping`]: e.target.value })}
+                        onKeyDown={e => e.key === 'Enter' && handleAddRegionNote(selectedRegion, 'shopping')}
+                      />
+                      <button onClick={() => handleAddRegionNote(selectedRegion, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                    </div>
+                  </div>
+
+                  {/* Misc Category */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-sky-400">
+                      <FileText className="w-3.5 h-3.5" /> Sonstiges & Highlights für {selectedRegion}
+                    </div>
+                    <ul className="space-y-1.5">
+                      {currentRegionNotes.misc?.map((note, i) => (
+                        <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
+                          <span className="text-slate-200">{note}</span>
+                          <button onClick={() => handleDeleteRegionNote(selectedRegion, 'misc', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex gap-2">
+                      <input 
+                        type="text" 
+                        placeholder={`Reminder/Highlight für ${selectedRegion}...`}
+                        className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-teal-500 text-slate-200 placeholder:text-slate-500"
+                        value={inputState[`reg-${selectedRegion}-misc`] || ''}
+                        onChange={e => setInputState({ ...inputState, [`reg-${selectedRegion}-misc`]: e.target.value })}
+                        onKeyDown={e => e.key === 'Enter' && handleAddRegionNote(selectedRegion, 'misc')}
+                      />
+                      <button onClick={() => handleAddRegionNote(selectedRegion, 'misc')} className="bg-sky-600 hover:bg-sky-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Daily Cards (nur wenn nicht 'Karte' gewählt) */}
+          {selectedRegion !== 'Karte' && (
+            <div className="space-y-4">
+              {filteredItinerary.map((item) => {
+                const dayNotes = reminders[item.id] || { food: [], shopping: [], misc: [] };
+                const isExpanded = expandedDay === item.id;
+                const totalNotes = (dayNotes.food?.length || 0) + (dayNotes.shopping?.length || 0) + (dayNotes.misc?.length || 0);
+
+                return (
+                  <div key={item.id} className="bg-slate-900/50 rounded-2xl border border-white/10 shadow-lg overflow-hidden backdrop-blur-md transition-all hover:border-white/20">
+                    <div className="p-4 sm:p-5">
+                      <div className="flex justify-between items-start mb-3">
+                        <div className="flex items-center gap-2.5">
+                          <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                            <Calendar className="w-4 h-4" />
+                          </div>
+                          <h2 className="font-bold text-slate-100 text-base">{item.date}</h2>
                         </div>
-                        <div className="flex gap-2">
-                          {item.checkOutPrev && (
-                            <span className="px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30 font-semibold text-[11px]">
-                              🔑 Check-out {item.checkOutPrev}
+                        
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 backdrop-blur-md ${
+                          item.isFlight 
+                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' 
+                            : (item.isHawaii 
+                                ? 'bg-teal-500/20 text-teal-300 border border-teal-500/30' 
+                                : 'bg-orange-500/20 text-orange-300 border border-orange-500/30')
+                        }`}>
+                          {item.isFlight ? <Plane className="w-3 h-3" /> : (item.isHawaii ? <Palmtree className="w-3 h-3" /> : <MapPin className="w-3 h-3" />)}
+                          {item.region}
+                        </span>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-3 text-xs mb-3">
+                        <div className="bg-slate-950/60 p-3.5 rounded-xl border border-white/5">
+                          <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">Vormittag</span>
+                          <p className="text-slate-300 font-medium leading-relaxed">{item.morning}</p>
+                        </div>
+                        <div className="bg-slate-950/60 p-3.5 rounded-xl border border-white/5">
+                          <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block mb-1">Nachmittag / Abend</span>
+                          <p className="text-slate-300 font-medium leading-relaxed">{item.evening}</p>
+                        </div>
+                      </div>
+
+                      {item.hotel && (
+                        <div className="mb-3 px-3.5 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-amber-300 font-medium">
+                          <div className="flex items-center gap-2">
+                            <Hotel className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                            <span><strong>Unterkunft:</strong> {item.hotel}</span>
+                          </div>
+                          <div className="flex flex-wrap gap-2 items-center">
+                            {item.checkOutPrev && (
+                              <span className="px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30 font-semibold text-[11px]">
+                                🔑 Out: {item.checkOutPrev}
+                              </span>
+                            )}
+                            {item.checkIn && (
+                              <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold text-[11px]">
+                                🔑 Check-in {item.checkIn}
+                              </span>
+                            )}
+                            {item.checkOut && !item.checkOutPrev && (
+                              <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-200 border border-amber-500/30 font-semibold text-[11px]">
+                                🔑 Check-out {item.checkOut}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      <button 
+                        onClick={() => toggleExpand(item.id)}
+                        className="w-full flex items-center justify-between text-xs font-semibold text-slate-400 hover:text-slate-200 bg-slate-950/40 p-3 rounded-xl border border-white/5 transition-all"
+                      >
+                        <span className="flex items-center gap-2">
+                          <span>Tages-Reminder & Notizen</span>
+                          {totalNotes > 0 && (
+                            <span className="px-2 py-0.5 rounded-full text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 font-bold">
+                              {totalNotes}
                             </span>
                           )}
-                          {item.checkOut && (
-                            <span className="px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30 font-semibold text-[11px]">
-                              🔑 Check-out {item.checkOut}
-                            </span>
-                          )}
-                          {item.checkIn && (
-                            <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold text-[11px]">
-                              🔑 Check-in {item.checkIn}
-                            </span>
-                          )}
+                        </span>
+                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </button>
+                    </div>
+
+                    {isExpanded && (
+                      <div className="bg-slate-950/90 p-4 border-t border-white/10 space-y-4">
+                        {/* Daily Essen Category */}
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
+                            <Utensils className="w-3.5 h-3.5" /> Essensvorschläge für {item.date}
+                          </div>
+                          <ul className="space-y-1.5">
+                            {dayNotes.food?.map((note, i) => (
+                              <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
+                                <span className="text-slate-200">{note}</span>
+                                <button onClick={() => handleDeleteNote(item.id, 'food', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="flex gap-2">
+                            <input 
+                              type="text" 
+                              placeholder="z. B. Restaurant, Foodtruck..."
+                              className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 text-slate-200 placeholder:text-slate-500"
+                              value={inputState[`${item.id}-food`] || ''}
+                              onChange={e => setInputState({ ...inputState, [`${item.id}-food`]: e.target.value })}
+                              onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'food')}
+                            />
+                            <button onClick={() => handleAddNote(item.id, 'food')} className="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                          </div>
+                        </div>
+
+                        {/* Daily Shopping Category */}
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 text-xs font-bold text-pink-400">
+                            <ShoppingBag className="w-3.5 h-3.5" /> Shopping für {item.date}
+                          </div>
+                          <ul className="space-y-1.5">
+                            {dayNotes.shopping?.map((note, i) => (
+                              <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
+                                <span className="text-slate-200">{note}</span>
+                                <button onClick={() => handleDeleteNote(item.id, 'shopping', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="flex gap-2">
+                            <input 
+                              type="text" 
+                              placeholder="z. B. Mall, Souvenirs..."
+                              className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 text-slate-200 placeholder:text-slate-500"
+                              value={inputState[`${item.id}-shopping`] || ''}
+                              onChange={e => setInputState({ ...inputState, [`${item.id}-shopping`]: e.target.value })}
+                              onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'shopping')}
+                            />
+                            <button onClick={() => handleAddNote(item.id, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                          </div>
+                        </div>
+
+                        {/* Daily Misc Category */}
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 text-xs font-bold text-sky-400">
+                            <FileText className="w-3.5 h-3.5" /> Sonstiges für {item.date}
+                          </div>
+                          <ul className="space-y-1.5">
+                            {dayNotes.misc?.map((note, i) => (
+                              <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
+                                <span className="text-slate-200">{note}</span>
+                                <button onClick={() => handleDeleteNote(item.id, 'misc', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="flex gap-2">
+                            <input 
+                              type="text" 
+                              placeholder="z. B. Notizen, Tickets..."
+                              className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 text-slate-200 placeholder:text-slate-500"
+                              value={inputState[`${item.id}-misc`] || ''}
+                              onChange={e => setInputState({ ...inputState, [`${item.id}-misc`]: e.target.value })}
+                              onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'misc')}
+                            />
+                            <button onClick={() => handleAddNote(item.id, 'misc')} className="bg-sky-600 hover:bg-sky-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                          </div>
                         </div>
                       </div>
                     )}
-
-                    <button 
-                      onClick={() => toggleExpand(item.id)}
-                      className="w-full flex items-center justify-between text-xs font-semibold text-slate-400 hover:text-slate-200 bg-slate-950/40 p-3 rounded-xl border border-white/5 transition-all"
-                    >
-                      <span className="flex items-center gap-2">
-                        <span>Tages-Reminder & Notizen</span>
-                        {totalNotes > 0 && (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 font-bold">
-                            {totalNotes}
-                          </span>
-                        )}
-                      </span>
-                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    </button>
                   </div>
-
-                  {isExpanded && (
-                    <div className="bg-slate-950/90 p-4 border-t border-white/10 space-y-4">
-                      {/* Daily Essen Category */}
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
-                          <Utensils className="w-3.5 h-3.5" /> Essensvorschläge für {item.date}
-                        </div>
-                        <ul className="space-y-1.5">
-                          {dayNotes.food?.map((note, i) => (
-                            <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
-                              <span className="text-slate-200">{note}</span>
-                              <button onClick={() => handleDeleteNote(item.id, 'food', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex gap-2">
-                          <input 
-                            type="text" 
-                            placeholder="z. B. Restaurant, Foodtruck..."
-                            className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 text-slate-200 placeholder:text-slate-500"
-                            value={inputState[`${item.id}-food`] || ''}
-                            onChange={e => setInputState({ ...inputState, [`${item.id}-food`]: e.target.value })}
-                            onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'food')}
-                          />
-                          <button onClick={() => handleAddNote(item.id, 'food')} className="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
-                        </div>
-                      </div>
-
-                      {/* Daily Shopping Category */}
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-xs font-bold text-pink-400">
-                          <ShoppingBag className="w-3.5 h-3.5" /> Shopping für {item.date}
-                        </div>
-                        <ul className="space-y-1.5">
-                          {dayNotes.shopping?.map((note, i) => (
-                            <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
-                              <span className="text-slate-200">{note}</span>
-                              <button onClick={() => handleDeleteNote(item.id, 'shopping', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex gap-2">
-                          <input 
-                            type="text" 
-                            placeholder="z. B. Mall, Souvenirs..."
-                            className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 text-slate-200 placeholder:text-slate-500"
-                            value={inputState[`${item.id}-shopping`] || ''}
-                            onChange={e => setInputState({ ...inputState, [`${item.id}-shopping`]: e.target.value })}
-                            onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'shopping')}
-                          />
-                          <button onClick={() => handleAddNote(item.id, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
-                        </div>
-                      </div>
-
-                      {/* Daily Misc Category */}
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-xs font-bold text-sky-400">
-                          <FileText className="w-3.5 h-3.5" /> Sonstiges für {item.date}
-                        </div>
-                        <ul className="space-y-1.5">
-                          {dayNotes.misc?.map((note, i) => (
-                            <li key={i} className="flex justify-between items-center text-xs bg-slate-900/90 p-2.5 rounded-xl border border-white/5">
-                              <span className="text-slate-200">{note}</span>
-                              <button onClick={() => handleDeleteNote(item.id, 'misc', i)} className="text-red-400 hover:text-red-300 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex gap-2">
-                          <input 
-                            type="text" 
-                            placeholder="z. B. Notizen, Tickets..."
-                            className="flex-1 text-xs bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 text-slate-200 placeholder:text-slate-500"
-                            value={inputState[`${item.id}-misc`] || ''}
-                            onChange={e => setInputState({ ...inputState, [`${item.id}-misc`]: e.target.value })}
-                            onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'misc')}
-                          />
-                          <button onClick={() => handleAddNote(item.id, 'misc')} className="bg-sky-600 hover:bg-sky-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </main>
       )}
 
@@ -732,7 +806,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Hotel Übersichtskarte mit Check-in / Check-out */}
           <div className="bg-slate-950/80 p-5 rounded-2xl border border-amber-500/20 space-y-3">
             <h3 className="text-sm font-bold text-amber-400 flex items-center gap-2">
               <Hotel className="w-4 h-4" /> Gebuchte Unterkünfte & Zeiten
@@ -740,35 +813,35 @@ export default function App() {
             <ul className="space-y-2.5 text-xs text-slate-300">
               <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-teal-300">13.–17. Mai (Oahu):</span>
-                <div className="text-right sm:text-right text-left">
+                <div className="text-left sm:text-right">
                   <div className="text-slate-100 font-medium">Ramada Plaza by Wyndham Waikiki</div>
                   <div className="text-[11px] text-slate-400">Check-in: ab 15:00 Uhr | Check-out: bis 11:00 Uhr</div>
                 </div>
               </li>
               <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-teal-300">17.–21. Mai (Maui):</span>
-                <div className="text-right sm:text-right text-left">
+                <div className="text-left sm:text-right">
                   <div className="text-slate-100 font-medium">Maui Seaside Hotel</div>
                   <div className="text-[11px] text-slate-400">Check-in: ab 16:00 Uhr | Check-out: bis 11:00 Uhr</div>
                 </div>
               </li>
               <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-teal-300">21.–24. Mai (Big Island):</span>
-                <div className="text-right sm:text-right text-left">
+                <div className="text-left sm:text-right">
                   <div className="text-slate-100 font-medium">Holiday Inn Express & Suites Kailua-Kona</div>
                   <div className="text-[11px] text-slate-400">Check-in: ab 15:00 Uhr | Check-out: bis 11:00 Uhr</div>
                 </div>
               </li>
               <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-orange-300">25.–29. Mai (Phoenix):</span>
-                <div className="text-right sm:text-right text-left">
+                <div className="text-left sm:text-right">
                   <div className="text-slate-100 font-medium">Holiday Inn Express & Suites Phoenix West - Tolleson</div>
                   <div className="text-[11px] text-slate-400">Check-in: ab 15:00 Uhr | Check-out: bis 11:00 Uhr</div>
                 </div>
               </li>
               <li className="flex flex-col sm:flex-row justify-between border-b border-white/5 pb-2 gap-1">
                 <span className="font-semibold text-orange-300">29. Mai – 03. Jun (Rancho Cucamonga):</span>
-                <div className="text-right sm:text-right text-left">
+                <div className="text-left sm:text-right">
                   <div className="text-slate-100 font-medium">Best Western Plus Heritage Inn Ontario Rancho Cucamonga</div>
                   <div className="text-[11px] text-slate-400">Check-in: ab 15:00 Uhr | Check-out: bis 12:00 Uhr</div>
                 </div>
