@@ -458,8 +458,14 @@ export default function App() {
                 <span className="text-xs text-slate-400">Klicke auf die Pins für Details</span>
               </div>
 
-              <div className="h-[420px] w-full rounded-xl overflow-hidden border border-white/10 z-0">
-                <MapContainer center={[25.0, -135.0]} zoom={3} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
+              <div className="h-[420px] w-full rounded-xl overflow-hidden border border-white/10 z-0 relative">
+                <MapContainer 
+                  center={[21.3069, -157.8583]} 
+                  zoom={5} 
+                  scrollWheelZoom={false} 
+                  style={{ height: '100%', width: '100%' }}
+                  whenReady={(map) => { setTimeout(() => map.target.invalidateSize(), 100); }}
+                >
                   <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -563,7 +569,7 @@ export default function App() {
                         onChange={e => setInputState({ ...inputState, [`reg-${selectedRegion}-shopping`]: e.target.value })}
                         onKeyDown={e => e.key === 'Enter' && handleAddRegionNote(selectedRegion, 'shopping')}
                       />
-                      <button onClick={() => handleAddRegionNote(selectedRegion, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                      <button onClick={() => handleDeleteRegionNote(selectedRegion, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
                     </div>
                   </div>
 
@@ -731,7 +737,7 @@ export default function App() {
                               onChange={e => setInputState({ ...inputState, [`${item.id}-shopping`]: e.target.value })}
                               onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'shopping')}
                             />
-                            <button onClick={() => handleAddNote(item.id, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                            <button onClick={() => handleDeleteNote(item.id, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
                           </div>
                         </div>
 
@@ -757,7 +763,7 @@ export default function App() {
                               onChange={e => setInputState({ ...inputState, [`${item.id}-misc`]: e.target.value })}
                               onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'misc')}
                             />
-                            <button onClick={() => handleAddNote(item.id, 'misc')} className="bg-sky-600 hover:bg-sky-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                            <button onClick={() => handleDeleteNote(item.id, 'misc')} className="bg-sky-600 hover:bg-sky-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
                           </div>
                         </div>
                       </div>
