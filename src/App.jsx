@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Calendar, MapPin, Plane, Utensils, ShoppingBag, 
-  FileText, Plus, Trash2, ChevronDown, ChevronUp, Bookmark, Clock, Compass, Sun, Palmtree, CloudSun, Waves, Hotel, DollarSign, RefreshCw
+  FileText, Plus, Trash2, ChevronDown, ChevronUp, Bookmark, Clock, Compass, Sun, Palmtree, CloudSun, Waves, Hotel, DollarSign, CloudRain, SunMedium
 } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -42,7 +42,7 @@ const initialItinerary = [
 ];
 
 const regionCoords = {
-  'Alle': { lat: 50.1109, lon: 8.6821, waterTemp: null },
+  'Alle': { lat: 21.3069, lon: -157.8583, waterTemp: null },
   'Oahu (Honolulu)': { lat: 21.3069, lon: -157.8583, waterTemp: "26°C" },
   'Maui (Kahului)': { lat: 20.8893, lon: -156.4729, waterTemp: "26°C" },
   'Maui': { lat: 20.7984, lon: -156.3319, waterTemp: "26°C" },
@@ -166,20 +166,21 @@ export default function App() {
   const [selectedRegion, setSelectedRegion] = useState('Alle');
   const [expandedDay, setExpandedDay] = useState(null);
   const [isRegionNotesExpanded, setIsRegionNotesExpanded] = useState(true);
+  const [showForecast, setShowForecast] = useState(false);
 
-  // Weather State
+  // Weather & 7-Day Forecast State
   const [weather, setWeather] = useState({ temp: null, loading: true });
+  const [forecast, setForecast] = useState([]);
 
   // Countdown State
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
 
   // Live Exchange Rate State (USD <-> EUR)
-  const [exchangeRate, setExchangeRate] = useState(0.89); // Fallback-Kurs
+  const [exchangeRate, setExchangeRate] = useState(0.89); 
   const [usdAmount, setUsdAmount] = useState('100');
   const [eurAmount, setEurAmount] = useState('');
-  const [isUsdToBase, setIsUsdToBase] = useState(true);
 
-  // Live Exchange Rate vom EZB-Dienst (Frankfurter API)
+  // Live Exchange Rate von Frankfurter API
   useEffect(() => {
     fetch('https://api.frankfurter.app/latest?from=USD&to=EUR')
       .then(res => res.json())
@@ -210,18 +211,32 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // Fetch Weather Data from Open-Meteo API
+  // Fetch Weather & 7-Day Forecast from Open-Meteo API
   useEffect(() => {
     const coords = regionCoords[selectedRegion] || regionCoords['Alle'];
     setWeather({ temp: null, loading: true });
 
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true`)
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`)
       .then(res => res.json())
       .then(data => {
         if (data && data.current_weather) {
           setWeather({ temp: Math.round(data.current_weather.temperature), loading: false });
         } else {
           setWeather({ temp: '--', loading: false });
+        }
+
+        if (data && data.daily) {
+          const dailyList = data.daily.time.slice(0, 7).map((time, idx) => {
+            const dateObj = new Date(time);
+            const dayName = dateObj.toLocaleDateString('de-DE', { weekday: 'short' });
+            return {
+              day: dayName,
+              max: Math.round(data.daily.temperature_2m_max[idx]),
+              min: Math.round(data.daily.temperature_2m_min[idx]),
+              code: data.daily.weathercode[idx]
+            };
+          });
+          setForecast(dailyList);
         }
       })
       .catch(() => setWeather({ temp: '--', loading: false }));
@@ -370,7 +385,7 @@ export default function App() {
       {/* Header Banner */}
       <header className="max-w-4xl mx-auto mb-6 rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative bg-slate-900/60 backdrop-blur-xl">
         <div 
-          className="h-44 sm:h-52 bg-cover bg-center relative transition-all duration-700"
+          className="h-48 sm:h-56 bg-cover bg-center relative transition-all duration-700"
           style={{ backgroundImage: `url(${activeVisual.bg})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
@@ -401,15 +416,21 @@ export default function App() {
             </div>
 
             <div className="flex gap-2 flex-wrap">
-              <div className="bg-slate-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10 flex items-center gap-2 shadow-lg">
+              {/* Wetter-Button mit Ausklappfunktion für 7-Tage-Vorschau */}
+              <button 
+                onClick={() => setShowForecast(!showForecast)}
+                className="bg-slate-900/80 hover:bg-slate-800/90 backdrop-blur-md px-3 py-2 rounded-xl border border-sky-400/30 flex items-center gap-2 shadow-lg transition-all"
+              >
                 <CloudSun className="w-4 h-4 text-sky-400" />
                 <div className="text-right">
-                  <p className="text-[9px] uppercase tracking-wider text-slate-400 font-medium">Luft</p>
+                  <p className="text-[9px] uppercase tracking-wider text-slate-400 font-medium flex items-center gap-1">
+                    Luft <ChevronDown className={`w-3 h-3 transition-transform ${showForecast ? 'rotate-180' : ''}`} />
+                  </p>
                   <p className="text-xs font-bold text-sky-200">
                     {weather.loading ? '...' : `${weather.temp}°C`}
                   </p>
                 </div>
-              </div>
+              </button>
 
               {currentWaterTemp && (
                 <div className="bg-slate-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-teal-500/30 flex items-center gap-2 shadow-lg">
@@ -433,6 +454,30 @@ export default function App() {
             </div>
           </div>
         </div>
+
+        {/* 7-Tage-Wetter-Vorschau Ausklapp-Bereich */}
+        {showForecast && (
+          <div className="p-4 bg-slate-950/90 border-t border-sky-500/20 backdrop-blur-xl animate-fadeIn">
+            <div className="flex justify-between items-center mb-3">
+              <span className="text-xs font-bold text-sky-300 flex items-center gap-1.5">
+                <CloudSun className="w-4 h-4" /> 7-Tage-Wettervorhersage für <strong className="text-white">{selectedRegion === 'Karte' || selectedRegion === 'Währung' ? 'Oahu (Honolulu)' : selectedRegion}</strong>
+              </span>
+              <span className="text-[10px] text-slate-400">Live via Open-Meteo</span>
+            </div>
+            <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
+              {forecast.map((f, i) => (
+                <div key={i} className="bg-slate-900/80 p-2 rounded-xl border border-white/5 text-center flex flex-col items-center justify-between">
+                  <span className="text-[10px] font-bold text-slate-400">{i === 0 ? 'Heute' : f.day}</span>
+                  {f.code > 50 ? <CloudRain className="w-4 h-4 text-blue-400 my-1" /> : (f.code > 2 ? <CloudSun className="w-4 h-4 text-amber-300 my-1" /> : <SunMedium className="w-4 h-4 text-amber-400 my-1" />)}
+                  <div>
+                    <span className="text-xs font-bold text-slate-100 block">{f.max}°</span>
+                    <span className="text-[9px] text-slate-400 block">{f.min}°</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </header>
 
       {activeTab === 'plan' && (
