@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Calendar, MapPin, Plane, Utensils, ShoppingBag, 
-  FileText, Plus, Trash2, ChevronDown, ChevronUp, Bookmark, Clock, Compass, Sun, Palmtree, CloudSun, Waves, Hotel
+  FileText, Plus, Trash2, ChevronDown, ChevronUp, Bookmark, Clock, Compass, Sun, Palmtree, CloudSun, Waves, Hotel, DollarSign, RefreshCw
 } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -173,6 +173,24 @@ export default function App() {
   // Countdown State
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
 
+  // Live Exchange Rate State (USD <-> EUR)
+  const [exchangeRate, setExchangeRate] = useState(0.89); // Fallback-Kurs
+  const [usdAmount, setUsdAmount] = useState('100');
+  const [eurAmount, setEurAmount] = useState('');
+  const [isUsdToBase, setIsUsdToBase] = useState(true);
+
+  // Live Exchange Rate vom EZB-Dienst (Frankfurter API)
+  useEffect(() => {
+    fetch('https://api.frankfurter.app/latest?from=USD&to=EUR')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.rates && data.rates.EUR) {
+          setExchangeRate(data.rates.EUR);
+        }
+      })
+      .catch(() => console.log('Nutze Standard-Wechselkurs'));
+  }, []);
+
   useEffect(() => {
     const targetDate = new Date('2027-05-13T06:00:00');
     const updateCountdown = () => {
@@ -261,9 +279,9 @@ export default function App() {
     localStorage.setItem('usa2027_region_reminders', JSON.stringify(regionReminders));
   }, [regionReminders]);
 
-  const regions = ['Alle', 'Karte', ...new Set(initialItinerary.map(item => item.region))];
+  const regions = ['Alle', 'Karte', 'Währung', ...new Set(initialItinerary.map(item => item.region))];
 
-  const filteredItinerary = (selectedRegion === 'Alle' || selectedRegion === 'Karte')
+  const filteredItinerary = (selectedRegion === 'Alle' || selectedRegion === 'Karte' || selectedRegion === 'Währung')
     ? initialItinerary 
     : initialItinerary.filter(item => item.region === selectedRegion);
 
@@ -419,12 +437,13 @@ export default function App() {
 
       {activeTab === 'plan' && (
         <main className="max-w-4xl mx-auto space-y-5">
-          {/* Region Filter Bar mit 'Karte' Button */}
+          {/* Region Filter Bar mit 'Karte' & 'Währung' Button */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none bg-slate-900/40 p-2 rounded-2xl border border-white/5 backdrop-blur-md">
             <Compass className="w-4 h-4 text-blue-400 ml-2 flex-shrink-0" />
             {regions.map(r => {
               const isHaw = initialItinerary.find(i => i.region === r)?.isHawaii;
               const isMap = r === 'Karte';
+              const isCurr = r === 'Währung';
               return (
                 <button
                   key={r}
@@ -433,15 +452,18 @@ export default function App() {
                     selectedRegion === r 
                       ? (isMap
                           ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg border border-blue-400/40'
-                          : (isHaw 
-                              ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg border border-teal-400/40' 
-                              : 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg border border-orange-400/40'))
+                          : (isCurr
+                              ? 'bg-gradient-to-r from-emerald-600 to-green-600 text-white shadow-lg border border-emerald-400/40'
+                              : (isHaw 
+                                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg border border-teal-400/40' 
+                                  : 'bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg border border-orange-400/40')))
                       : 'bg-slate-800/40 text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 border border-white/5'
                   }`}
                 >
                   {isMap && <MapPin className="w-3 h-3 text-blue-300" />}
-                  {isHaw && !isMap && <Palmtree className="w-3 h-3 text-teal-300" />}
-                  {!isHaw && !isMap && r !== 'Alle' && r !== 'Flug' && r !== 'Frankfurt (Ankunft)' && <Sun className="w-3 h-3 text-amber-400" />}
+                  {isCurr && <DollarSign className="w-3 h-3 text-emerald-300" />}
+                  {isHaw && !isMap && !isCurr && <Palmtree className="w-3 h-3 text-teal-300" />}
+                  {!isHaw && !isMap && !isCurr && r !== 'Alle' && r !== 'Flug' && r !== 'Frankfurt (Ankunft)' && <Sun className="w-3 h-3 text-amber-400" />}
                   {r}
                 </button>
               );
@@ -485,8 +507,77 @@ export default function App() {
             </div>
           )}
 
-          {/* Region Overview Card (nur wenn nicht 'Karte' gewählt) */}
-          {selectedRegion !== 'Karte' && (
+          {/* Währungsrechner Reiter */}
+          {selectedRegion === 'Währung' && (
+            <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30 backdrop-blur-xl space-y-5 shadow-xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold text-base">
+                  <DollarSign className="w-5 h-5" /> Live-Währungsrechner (USD ⇄ EUR)
+                </div>
+                <span className="text-[11px] text-emerald-300/80 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20 font-medium">
+                  Aktueller EZB-Kurs: 1 $ = {exchangeRate.toFixed(4)} €
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-slate-950/70 p-4 rounded-xl border border-white/10 space-y-2">
+                  <label className="text-xs font-semibold text-slate-400 block">US-Dollar ($)</label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg font-bold text-emerald-400">$</span>
+                    <input 
+                      type="number" 
+                      value={usdAmount}
+                      onChange={(e) => {
+                        setUsdAmount(e.target.value);
+                        setEurAmount(e.target.value ? (parseFloat(e.target.value) * exchangeRate).toFixed(2) : '');
+                      }}
+                      placeholder="100"
+                      className="w-full bg-transparent text-xl font-bold text-white focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="bg-slate-950/70 p-4 rounded-xl border border-white/10 space-y-2">
+                  <label className="text-xs font-semibold text-slate-400 block">Euro (€)</label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg font-bold text-blue-400">€</span>
+                    <input 
+                      type="number" 
+                      value={eurAmount !== '' ? eurAmount : (parseFloat(usdAmount || 0) * exchangeRate).toFixed(2)}
+                      onChange={(e) => {
+                        setEurAmount(e.target.value);
+                        setUsdAmount(e.target.value ? (parseFloat(e.target.value) / exchangeRate).toFixed(2) : '');
+                      }}
+                      placeholder="89"
+                      className="w-full bg-transparent text-xl font-bold text-white focus:outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Schnellauswahl-Buttons für typische US-Preise */}
+              <div className="pt-2">
+                <span className="text-xs font-medium text-slate-400 block mb-2">Schnell-Umrechnung typischer Beträge:</span>
+                <div className="flex gap-2 flex-wrap">
+                  {[10, 25, 50, 100, 250, 500].map(amount => (
+                    <button
+                      key={amount}
+                      onClick={() => {
+                        setUsdAmount(amount.toString());
+                        setEurAmount((amount * exchangeRate).toFixed(2));
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-emerald-600/30 hover:border-emerald-500/50 text-xs font-semibold text-slate-200 border border-white/10 transition-all"
+                    >
+                      ${amount} = {(amount * exchangeRate).toFixed(2)} €
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Region Overview Card (nur wenn nicht 'Karte' oder 'Währung' gewählt) */}
+          {selectedRegion !== 'Karte' && selectedRegion !== 'Währung' && (
             <div className={`rounded-2xl border shadow-xl overflow-hidden backdrop-blur-xl transition-all ${
               isSelectedHawaii 
                 ? 'bg-gradient-to-b from-teal-950/40 to-slate-900/60 border-teal-500/30' 
@@ -569,7 +660,7 @@ export default function App() {
                         onChange={e => setInputState({ ...inputState, [`reg-${selectedRegion}-shopping`]: e.target.value })}
                         onKeyDown={e => e.key === 'Enter' && handleAddRegionNote(selectedRegion, 'shopping')}
                       />
-                      <button onClick={() => handleDeleteRegionNote(selectedRegion, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                      <button onClick={() => handleAddRegionNote(selectedRegion, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
                     </div>
                   </div>
 
@@ -603,8 +694,8 @@ export default function App() {
             </div>
           )}
 
-          {/* Daily Cards (nur wenn nicht 'Karte' gewählt) */}
-          {selectedRegion !== 'Karte' && (
+          {/* Daily Cards (nur wenn nicht 'Karte' oder 'Währung' gewählt) */}
+          {selectedRegion !== 'Karte' && selectedRegion !== 'Währung' && (
             <div className="space-y-4">
               {filteredItinerary.map((item) => {
                 const dayNotes = reminders[item.id] || { food: [], shopping: [], misc: [] };
@@ -737,7 +828,7 @@ export default function App() {
                               onChange={e => setInputState({ ...inputState, [`${item.id}-shopping`]: e.target.value })}
                               onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'shopping')}
                             />
-                            <button onClick={() => handleDeleteNote(item.id, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                            <button onClick={() => handleAddNote(item.id, 'shopping')} className="bg-pink-600 hover:bg-pink-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
                           </div>
                         </div>
 
@@ -763,7 +854,7 @@ export default function App() {
                               onChange={e => setInputState({ ...inputState, [`${item.id}-misc`]: e.target.value })}
                               onKeyDown={e => e.key === 'Enter' && handleAddNote(item.id, 'misc')}
                             />
-                            <button onClick={() => handleDeleteNote(item.id, 'misc')} className="bg-sky-600 hover:bg-sky-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
+                            <button onClick={() => handleAddNote(item.id, 'misc')} className="bg-sky-600 hover:bg-sky-500 text-white p-2 rounded-xl transition-all shadow-md"><Plus className="w-4 h-4" /></button>
                           </div>
                         </div>
                       </div>
