@@ -6,6 +6,22 @@ import {
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+
+// Firebase Konfiguration
+const firebaseConfig = {
+  apiKey: "AIzaSyCQ8M2NpMp8CEOSTPyli-gkPpw3Y34V8Ew",
+  authDomain: "usa-reise-app.firebaseapp.com",
+  projectId: "usa-reise-app",
+  storageBucket: "usa-reise-app.appspot.com",
+  messagingSenderId: "454628916949",
+  appId: "1:454628916949:web:901e12bd0ae8db090a6c5c",
+  measurementId: "G-7CPXPPE3ZP"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 // Fix für Standard-Marker-Icons in React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -161,6 +177,18 @@ const defaultRanchoFood = [
   "Farmers Market at The Grove (Bei Ausflügen nach LA)"
 ];
 
+const defaultRegionNotes = {
+  "Oahu (Honolulu)": { food: defaultOahuFood, shopping: defaultOahuShopping, misc: [] },
+  "Maui": { food: defaultMauiFood, shopping: defaultMauiShopping, misc: defaultMauiMisc },
+  "Maui (Kahului)": { food: defaultMauiFood, shopping: defaultMauiShopping, misc: defaultMauiMisc },
+  "Big Island": { food: defaultBigIslandFood, shopping: defaultBigIslandShopping, misc: [] },
+  "Big Island (Kona)": { food: defaultBigIslandFood, shopping: defaultBigIslandShopping, misc: [] },
+  "Phoenix (Arizona)": { food: defaultPhoenixFood, shopping: defaultPhoenixShopping, misc: [] },
+  "Phoenix": { food: defaultPhoenixFood, shopping: defaultPhoenixShopping, misc: [] },
+  "Rancho Cucamonga (CA)": { food: defaultRanchoFood, shopping: defaultRanchoShopping, misc: [] },
+  "Rancho Cucamonga": { food: defaultRanchoFood, shopping: defaultRanchoShopping, misc: [] }
+};
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('plan');
   const [selectedRegion, setSelectedRegion] = useState('Alle');
@@ -179,6 +207,41 @@ export default function App() {
   const [exchangeRate, setExchangeRate] = useState(0.89); 
   const [usdAmount, setUsdAmount] = useState('100');
   const [eurAmount, setEurAmount] = useState('');
+
+  // Notizen aus Firebase State
+  const [reminders, setReminders] = useState({});
+  const [regionReminders, setRegionReminders] = useState(defaultRegionNotes);
+  const [inputState, setInputState] = useState({});
+
+  // Beim Start Daten von Firebase laden
+  useEffect(() => {
+    const loadFromFirebase = async () => {
+      try {
+        const docRef = doc(db, "tripData", "main");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.reminders) setReminders(data.reminders);
+          if (data.regionReminders) setRegionReminders(prev => ({ ...prev, ...data.regionReminders }));
+        }
+      } catch (e) {
+        console.log("Fehler beim Laden von Firebase:", e);
+      }
+    };
+    loadFromFirebase();
+  }, []);
+
+  // Funktion zum Speichern in Firebase
+  const saveToFirebase = async (newReminders, newRegionReminders) => {
+    try {
+      await setDoc(doc(db, "tripData", "main"), {
+        reminders: newReminders,
+        regionReminders: newRegionReminders
+      });
+    } catch (e) {
+      console.log("Fehler beim Speichern in Firebase:", e);
+    }
+  };
 
   // Live Exchange Rate von Frankfurter API
   useEffect(() => {
@@ -242,58 +305,6 @@ export default function App() {
       .catch(() => setWeather({ temp: '--', loading: false }));
   }, [selectedRegion]);
 
-  // LocalStorage state for daily notes
-  const [reminders, setReminders] = useState(() => {
-    const saved = localStorage.getItem('usa2027_reminders');
-    return saved ? JSON.parse(saved) : {};
-  });
-
-  // LocalStorage state for destination/region notes
-  const [regionReminders, setRegionReminders] = useState(() => {
-    const saved = localStorage.getItem('usa2027_region_reminders');
-    const parsed = saved ? JSON.parse(saved) : {};
-
-    if (!parsed["Oahu (Honolulu)"]) {
-      parsed["Oahu (Honolulu)"] = { food: defaultOahuFood, shopping: defaultOahuShopping, misc: [] };
-    }
-    if (!parsed["Maui"]) {
-      parsed["Maui"] = { food: defaultMauiFood, shopping: defaultMauiShopping, misc: defaultMauiMisc };
-    }
-    if (!parsed["Maui (Kahului)"]) {
-      parsed["Maui (Kahului)"] = { food: defaultMauiFood, shopping: defaultMauiShopping, misc: defaultMauiMisc };
-    }
-    if (!parsed["Big Island"]) {
-      parsed["Big Island"] = { food: defaultBigIslandFood, shopping: defaultBigIslandShopping, misc: [] };
-    }
-    if (!parsed["Big Island (Kona)"]) {
-      parsed["Big Island (Kona)"] = { food: defaultBigIslandFood, shopping: defaultBigIslandShopping, misc: [] };
-    }
-    if (!parsed["Phoenix (Arizona)"]) {
-      parsed["Phoenix (Arizona)"] = { food: defaultPhoenixFood, shopping: defaultPhoenixShopping, misc: [] };
-    }
-    if (!parsed["Phoenix"]) {
-      parsed["Phoenix"] = { food: defaultPhoenixFood, shopping: defaultPhoenixShopping, misc: [] };
-    }
-    if (!parsed["Rancho Cucamonga (CA)"]) {
-      parsed["Rancho Cucamonga (CA)"] = { food: defaultRanchoFood, shopping: defaultRanchoShopping, misc: [] };
-    }
-    if (!parsed["Rancho Cucamonga"]) {
-      parsed["Rancho Cucamonga"] = { food: defaultRanchoFood, shopping: defaultRanchoShopping, misc: [] };
-    }
-
-    return parsed;
-  });
-
-  const [inputState, setInputState] = useState({});
-
-  useEffect(() => {
-    localStorage.setItem('usa2027_reminders', JSON.stringify(reminders));
-  }, [reminders]);
-
-  useEffect(() => {
-    localStorage.setItem('usa2027_region_reminders', JSON.stringify(regionReminders));
-  }, [regionReminders]);
-
   const regions = ['Alle', 'Karte', 'Währung', ...new Set(initialItinerary.map(item => item.region))];
 
   const filteredItinerary = (selectedRegion === 'Alle' || selectedRegion === 'Karte' || selectedRegion === 'Währung')
@@ -308,66 +319,67 @@ export default function App() {
     const text = inputState[`${dayId}-${category}`];
     if (!text || !text.trim()) return;
 
-    setReminders(prev => {
-      const dayNotes = prev[dayId] || { food: [], shopping: [], misc: [] };
-      return {
-        ...prev,
-        [dayId]: {
-          ...dayNotes,
-          [category]: [...(dayNotes[category] || []), text.trim()]
-        }
-      };
-    });
+    const updatedReminders = {
+      ...reminders,
+      [dayId]: {
+        ...(reminders[dayId] || { food: [], shopping: [], misc: [] }),
+        [category]: [...((reminders[dayId] && reminders[dayId][category]) || []), text.trim()]
+      }
+    };
 
+    setReminders(updatedReminders);
+    saveToFirebase(updatedReminders, regionReminders);
     setInputState(prev => ({ ...prev, [`${dayId}-${category}`]: '' }));
   };
 
   const handleDeleteNote = (dayId, category, index) => {
-    setReminders(prev => {
-      const dayNotes = prev[dayId];
-      if (!dayNotes) return prev;
-      const updatedCat = dayNotes[category].filter((_, i) => i !== index);
-      return {
-        ...prev,
-        [dayId]: {
-          ...dayNotes,
-          [category]: updatedCat
-        }
-      };
-    });
+    const dayNotes = reminders[dayId];
+    if (!dayNotes) return;
+    const updatedCat = dayNotes[category].filter((_, i) => i !== index);
+    const updatedReminders = {
+      ...reminders,
+      [dayId]: {
+        ...dayNotes,
+        [category]: updatedCat
+      }
+    };
+
+    setReminders(updatedReminders);
+    saveToFirebase(updatedReminders, regionReminders);
   };
 
   const handleAddRegionNote = (regionName, category) => {
     const text = inputState[`reg-${regionName}-${category}`];
     if (!text || !text.trim()) return;
 
-    setRegionReminders(prev => {
-      const regNotes = prev[regionName] || { food: [], shopping: [], misc: [] };
-      return {
-        ...prev,
-        [regionName]: {
-          ...regNotes,
-          [category]: [...(regNotes[category] || []), text.trim()]
-        }
-      };
-    });
+    const regNotes = regionReminders[regionName] || { food: [], shopping: [], misc: [] };
+    const updatedRegReminders = {
+      ...regionReminders,
+      [regionName]: {
+        ...regNotes,
+        [category]: [...(regNotes[category] || []), text.trim()]
+      }
+    };
 
+    setRegionReminders(updatedRegReminders);
+    saveToFirebase(reminders, updatedRegReminders);
     setInputState(prev => ({ ...prev, [`reg-${regionName}-${category}`]: '' }));
   };
 
   const handleDeleteRegionNote = (regionName, category, index) => {
-    setRegionReminders(prev => {
-      const regNotes = prev[regionName];
-      if (!regNotes) return prev;
-      const updatedCat = regNotes[category].filter((_, i) => i !== index);
-      return {
-        ...prev,
-        [regionName]: {
-          ...regNotes,
-          [category]: updatedCat
-        }
-      };
-    });
+    const regNotes = regionReminders[regionName];
+    if (!regNotes) return;
+    const updatedCat = regNotes[category].filter((_, i) => i !== index);
+    const updatedRegReminders = {
+      ...regionReminders,
+      [regionName]: {
+        ...regNotes,
+        [category]: updatedCat
+      }
+    };
+
+    setRegionReminders(updatedRegReminders);
+    saveToFirebase(reminders, updatedRegReminders);
   };
 
   const currentRegionNotes = regionReminders[selectedRegion] || { food: [], shopping: [], misc: [] };
@@ -416,7 +428,6 @@ export default function App() {
             </div>
 
             <div className="flex gap-2 flex-wrap">
-              {/* Wetter-Button mit Ausklappfunktion für 7-Tage-Vorschau */}
               <button 
                 onClick={() => setShowForecast(!showForecast)}
                 className="bg-slate-900/80 hover:bg-slate-800/90 backdrop-blur-md px-3 py-2 rounded-xl border border-sky-400/30 flex items-center gap-2 shadow-lg transition-all"
@@ -455,7 +466,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* 7-Tage-Wetter-Vorschau Ausklapp-Bereich */}
         {showForecast && (
           <div className="p-4 bg-slate-950/90 border-t border-sky-500/20 backdrop-blur-xl animate-fadeIn">
             <div className="flex justify-between items-center mb-3">
@@ -482,7 +492,6 @@ export default function App() {
 
       {activeTab === 'plan' && (
         <main className="max-w-4xl mx-auto space-y-5">
-          {/* Region Filter Bar mit 'Karte' & 'Währung' Button */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none bg-slate-900/40 p-2 rounded-2xl border border-white/5 backdrop-blur-md">
             <Compass className="w-4 h-4 text-blue-400 ml-2 flex-shrink-0" />
             {regions.map(r => {
@@ -515,7 +524,6 @@ export default function App() {
             })}
           </div>
 
-          {/* Interaktive Landkarte, wenn 'Karte' ausgewählt ist */}
           {selectedRegion === 'Karte' && (
             <div className="bg-slate-900/80 p-5 rounded-2xl border border-blue-500/30 backdrop-blur-xl space-y-4 shadow-xl">
               <div className="flex items-center justify-between">
@@ -552,7 +560,6 @@ export default function App() {
             </div>
           )}
 
-          {/* Währungsrechner Reiter */}
           {selectedRegion === 'Währung' && (
             <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30 backdrop-blur-xl space-y-5 shadow-xl">
               <div className="flex items-center justify-between">
@@ -600,7 +607,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Schnellauswahl-Buttons für typische US-Preise */}
               <div className="pt-2">
                 <span className="text-xs font-medium text-slate-400 block mb-2">Schnell-Umrechnung typischer Beträge:</span>
                 <div className="flex gap-2 flex-wrap">
@@ -621,7 +627,6 @@ export default function App() {
             </div>
           )}
 
-          {/* Region Overview Card (nur wenn nicht 'Karte' oder 'Währung' gewählt) */}
           {selectedRegion !== 'Karte' && selectedRegion !== 'Währung' && (
             <div className={`rounded-2xl border shadow-xl overflow-hidden backdrop-blur-xl transition-all ${
               isSelectedHawaii 
@@ -657,7 +662,6 @@ export default function App() {
 
               {isRegionNotesExpanded && (
                 <div className="p-4 bg-slate-950/80 border-t border-white/5 space-y-4">
-                  {/* Food Category */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
                       <Utensils className="w-3.5 h-3.5" /> Gastro & Restaurant-Tipps für {selectedRegion}
@@ -683,7 +687,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Shopping Category */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold text-pink-400">
                       <ShoppingBag className="w-3.5 h-3.5" /> Shopping & Supermärkte auf {selectedRegion}
@@ -709,7 +712,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Misc Category */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold text-sky-400">
                       <FileText className="w-3.5 h-3.5" /> Sonstiges & Highlights für {selectedRegion}
@@ -739,7 +741,6 @@ export default function App() {
             </div>
           )}
 
-          {/* Daily Cards (nur wenn nicht 'Karte' oder 'Währung' gewählt) */}
           {selectedRegion !== 'Karte' && selectedRegion !== 'Währung' && (
             <div className="space-y-4">
               {filteredItinerary.map((item) => {
@@ -825,7 +826,6 @@ export default function App() {
 
                     {isExpanded && (
                       <div className="bg-slate-950/90 p-4 border-t border-white/10 space-y-4">
-                        {/* Daily Essen Category */}
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
                             <Utensils className="w-3.5 h-3.5" /> Essensvorschläge für {item.date}
@@ -851,7 +851,6 @@ export default function App() {
                           </div>
                         </div>
 
-                        {/* Daily Shopping Category */}
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-xs font-bold text-pink-400">
                             <ShoppingBag className="w-3.5 h-3.5" /> Shopping für {item.date}
@@ -877,7 +876,6 @@ export default function App() {
                           </div>
                         </div>
 
-                        {/* Daily Misc Category */}
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-xs font-bold text-sky-400">
                             <FileText className="w-3.5 h-3.5" /> Sonstiges für {item.date}
