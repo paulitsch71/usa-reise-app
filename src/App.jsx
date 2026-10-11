@@ -7,7 +7,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, onSnapshot, setDoc } from 'firebase/firestore';
 
 // Firebase Konfiguration
 const firebaseConfig = {
@@ -213,22 +213,20 @@ export default function App() {
   const [regionReminders, setRegionReminders] = useState(defaultRegionNotes);
   const [inputState, setInputState] = useState({});
 
-  // Beim Start Daten von Firebase laden
+  // Echtzeit-Live-Sync mit Firebase (onSnapshot)
   useEffect(() => {
-    const loadFromFirebase = async () => {
-      try {
-        const docRef = doc(db, "tripData", "main");
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          if (data.reminders) setReminders(data.reminders);
-          if (data.regionReminders) setRegionReminders(prev => ({ ...prev, ...data.regionReminders }));
-        }
-      } catch (e) {
-        console.log("Fehler beim Laden von Firebase:", e);
+    const docRef = doc(db, "tripData", "main");
+    const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        if (data.reminders) setReminders(data.reminders);
+        if (data.regionReminders) setRegionReminders(prev => ({ ...prev, ...data.regionReminders }));
       }
-    };
-    loadFromFirebase();
+    }, (error) => {
+      console.log("Fehler beim Echtzeit-Lauschen:", error);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   // Funktion zum Speichern in Firebase
